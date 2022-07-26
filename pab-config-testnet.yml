@@ -1,0 +1,59 @@
+dbConfig:
+    dbConfigUser: postgres
+    dbConfigPass: postgres
+    dbConfigHost: "54.177.190.73"
+    dbConfigPort: 5432
+    dbConfigDatabase: pab
+    dbConfigPoolSize: 20
+
+pabWebserverConfig:
+  baseUrl: http://localhost:9080
+  staticDir: plutus-pab-client/dist
+  permissiveCorsPolicy: False
+  # Optional timeout (in seconds) for calls to endpoints that are not currently
+  # available. If this is not set, calls to unavailable endpoints fail
+  # immediately.
+  endpointTimeout: 5
+
+walletServerConfig:
+  tag: LocalWalletConfig
+  walletSettings:
+    baseUrl: http://54.193.96.129:8091
+
+nodeServerConfig:
+  pscSocketPath: /ipc/node.sock
+  pscBaseUrl: "localhost"
+  pscKeptBlocks: 2160
+  pscNetworkId: "1097911063" # Testnet network ID (main net = empty string)
+  pscSlotConfig:
+    scSlotZeroTime: 1594369216000 # Wednesday, July 29, 2020 21:44:51 - shelley launch time in milliseconds 1594369216000
+    scSlotLength: 1000 # In milliseconds
+  pscFeeConfig:
+    fcConstantFee:
+      getLovelace: 10 # Constant fee per transaction in lovelace
+    fcScriptsFeeFactor: 1.0 # Factor by which to multiply size-dependent scripts fee in lovelace
+  pscInitialTxWallets: []
+  pscNodeMode: AlonzoNode
+  pscProtocolParametersJsonPath: null
+
+blockfrostConfig:
+  bfTokenPath: /testnet/testnet-token
+requestProcessingConfig:
+  requestProcessingInterval: 1
+
+signingProcessConfig:
+  spBaseUrl: http://localhost:9084
+  spWallet:
+    getWallet: 1
+
+metadataServerConfig:
+  mdBaseUrl: http://localhost:9085
+
+developmentOptions:
+  pabRollbackHistory: 1
+  pabResumeFrom:
+   #{ "tag" : "PointAtGenesis"}
+     { "tag" : "Point"
+     , "pointBlockId" : "468c22ef6ea255b780f7f7f8f277bc2284e78c873b3473fd61a2ea1e9e76b561"
+     , "pointSlot" : {"getSlot" : 59829477}
+     }

@@ -1,0 +1,57 @@
+version: "3.5"
+
+services:
+  cardano-node:
+    image: debian:buster-slim
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+    volumes:
+      - node-ipc:/ipc
+    command: bash -c "apt-get update --fix-missing 
+      && apt-get install socat -y 
+      && socat UNIX-LISTEN:/ipc/node.sock,fork,reuseaddr,unlink-early, TCP:54.193.96.129:3333"
+  
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pab
+    ports:
+      - "5432:5432"
+
+  pab-blockfrost:
+    image:  deepbhatt007/charli3-oracle-pab:22-07-2022
+    depends_on:
+      - cardano-node
+      - postgres
+    volumes:
+      - node-ipc:/ipc
+      - /home/ubuntu/cardano/plutus-apps-docker:/testnet
+    ports:
+      - 9080:9080
+    command: bash -c "rm -f plutus-pab.db && ./pab --config /testnet/pab-config-testnet.yml migrate -v && ./pab --config /testnet/pab-config-testnet.yml webserver --passphrase pab123456789 && tail -f /dev/null"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+  
+  charli3-backend:
+    image: deepbhatt007/backend-v2:22-07-2022
+    depends_on:
+      - pab-blockfrost
+    volumes:
+      - "./config.ini:/app/config.ini"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+  
+volumes:
+        node-ipc:
