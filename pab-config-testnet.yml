@@ -1,7 +1,7 @@
 dbConfig:
     dbConfigUser: postgres
     dbConfigPass: postgres
-    dbConfigHost: "54.177.190.73"
+    dbConfigHost: postgres
     dbConfigPort: 5432
     dbConfigDatabase: pab
     dbConfigPoolSize: 20
@@ -18,7 +18,7 @@ pabWebserverConfig:
 walletServerConfig:
   tag: LocalWalletConfig
   walletSettings:
-    baseUrl: http://54.193.96.129:8091
+    baseUrl: http://cardano-wallet:8090
 
 nodeServerConfig:
   pscSocketPath: /ipc/node.sock
