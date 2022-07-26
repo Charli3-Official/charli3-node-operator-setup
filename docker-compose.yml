@@ -20,14 +20,41 @@ services:
     ports:
       - "5432:5432"
 
+  cardano-wallet:
+    image: inputoutput/cardano-wallet:2022.7.1
+    depends_on:
+      - cardano-node
+    volumes:
+      - wallet-${NETWORK}-db:/wallet-db
+      - node-ipc:/ipc
+    ports:
+      - 8090:8090
+    entrypoint: []
+    command: bash -c "
+        ([[ $$NETWORK == \"mainnet\" ]] && $$CMD --mainnet) ||
+        ($$CMD --testnet /config/${NETWORK}/genesis-byron.json)
+      "
+    environment:
+      CMD: "cardano-wallet serve --node-socket /ipc/node.sock --database /wallet-db --listen-address 0.0.0.0"
+      NETWORK:
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+
+
   pab-blockfrost:
-    image:  deepbhatt007/charli3-oracle-pab:22-07-2022
+    image:  372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-oracle-pab:latest
     depends_on:
       - cardano-node
       - postgres
+      - cardano-wallet
     volumes:
       - node-ipc:/ipc
-      - /home/ubuntu/cardano/plutus-apps-docker:/testnet
+      - "../Charli3-Backend-setup:/testnet"
     ports:
       - 9080:9080
     command: bash -c "rm -f plutus-pab.db && ./pab --config /testnet/pab-config-testnet.yml migrate -v && ./pab --config /testnet/pab-config-testnet.yml webserver --passphrase pab123456789 && tail -f /dev/null"
@@ -40,7 +67,7 @@ services:
         max-size: "50m"
   
   charli3-backend:
-    image: deepbhatt007/backend-v2:22-07-2022
+    image: 372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-backend-v2:latest
     depends_on:
       - pab-blockfrost
     volumes:
@@ -55,3 +82,5 @@ services:
   
 volumes:
         node-ipc:
+        wallet-mainnet-db:
+        wallet-testnet-db:
