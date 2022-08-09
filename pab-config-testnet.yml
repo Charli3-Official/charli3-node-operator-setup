@@ -1,4 +1,4 @@
-dbConfig:
+postgresDB:
     dbConfigUser: postgres
     dbConfigPass: postgres
     dbConfigHost: postgres

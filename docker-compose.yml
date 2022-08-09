@@ -57,7 +57,7 @@ services:
       - "../Charli3-Backend-setup:/testnet"
     ports:
       - 9080:9080
-    command: bash -c "rm -f plutus-pab.db && ./pab --config /testnet/pab-config-testnet.yml migrate -v && ./pab --config /testnet/pab-config-testnet.yml webserver --passphrase pab123456789 && tail -f /dev/null"
+    command: bash -c "pab --config /testnet/pab-config-testnet.yml migrate -v && pab --config /testnet/pab-config-testnet.yml webserver --passphrase pab123456789 && tail -f /dev/null"
     restart: always
     logging:
       driver: "json-file"
@@ -67,7 +67,7 @@ services:
         max-size: "50m"
   
   charli3-backend:
-    image: 372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-backend-v2:latest
+    image: 372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-backend-v2:develop
     depends_on:
       - pab-blockfrost
     volumes:
