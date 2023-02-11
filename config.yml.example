@@ -1,0 +1,52 @@
+Updater:
+  update_inter: 180
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: xxx xxx xxx
+  oracle_curr: c00c2ee78495d1cc21010b354c56975ca3f0202e2ea9e16ebab0acfa
+  node_nft: NodeFeed
+  aggstate_nft: AggState
+  oracle_nft: OracleFeed
+  oracle_addr: addr_test1wr2x24tlcpr37sjrscaqsh6z4tue3k7zx8qt8n0kscen2jct0wkz7
+  c3_token_hash: 436941ead56c61dbf9b92b5f566f7d5b9cac08f8c957f28f0bd60d4b
+  c3_token_name: PAYMENTTOKEN
+
+ChainQuery:
+  network: TESTNET
+  base_url: https://cardano-preprod.blockfrost.io/api
+  project_id: xxxxx
+
+Rate:
+  binance:
+    type: binance
+    symbol: ADAUSDT
+  kucoin:
+    type: generic
+    symbol: ADA-USDT
+    api_url: https://api.kucoin.com
+    path: /api/v1/prices?currencies=ADA
+    json_path: ["data","ADA"]
+    key: {}
+  kraken:
+    type: generic
+    symbol: ADAUSD
+    api_url: https://api.kraken.com
+    path: /0/public/Ticker?pair=ADAUSD
+    json_path: ["result","ADAUSD","o"]
+    key: {}
+  bitrue:
+    type: generic
+    symbol: ADAUSDT
+    api_url: https://openapi.bitrue.com
+    path: /api/v1/ticker/price?symbol=adausdt
+    json_path: ["price"]
+    key: {}
+  coinbase:
+    type: generic
+    symbol: ADA-USD
+    api_url: https://api.exchange.coinbase.com
+    path: /products/ADA-USD/ticker/
+    json_path: ["price"]
+    key: {}

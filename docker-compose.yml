@@ -1,110 +1,10 @@
 version: "3.5"
 
 services:
-  cardano-node:
-    image: debian:buster-slim
-    restart: always
-    environment:
-      DEBIAN_FRONTEND: noninteractive
-    volumes:
-      - node-ipc:/ipc
-    command: bash -c "apt-get update --fix-missing 
-      && apt-get install socat -y 
-      && socat UNIX-LISTEN:/ipc/node.sock,fork,reuseaddr,unlink-early, TCP:54.193.96.129:3333"
-  
-  postgres:
-    image: postgres:latest
-    restart: always
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pab
-    ports:
-      - "5432:5432"
-
-  cardano-wallet:
-    image: inputoutput/cardano-wallet:2022.7.1
-    depends_on:
-      - cardano-node
-    volumes:
-      - wallet-${NETWORK}-db:/wallet-db
-      - node-ipc:/ipc
-    ports:
-      - 8090:8090
-    entrypoint: []
-    command: bash -c "
-        ([[ $$NETWORK == \"mainnet\" ]] && $$CMD --mainnet) ||
-        ($$CMD --testnet /config/${NETWORK}/genesis-byron.json)
-      "
-    environment:
-      CMD: "cardano-wallet serve --node-socket /ipc/node.sock --database /wallet-db --listen-address 0.0.0.0"
-      NETWORK:
-    restart: on-failure
-    logging:
-      driver: "json-file"
-      options:
-        compress: "true"
-        max-file: "10"
-        max-size: "50m"
-
-  pab-migration:
-    image:  372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-oracle-pab:latest
-    profiles:
-      - migration
-    restart: on-failure
-    depends_on:
-      - cardano-node
-      - postgres
-      - cardano-wallet
-    volumes:
-      - node-ipc:/ipc
-      - "../Charli3-Backend-setup:/testnet"
-    ports:
-      - 9080:9080
-    command: bash -c "pab --config /testnet/pab-config-testnet.yml migrate -v"
-    logging:
-      driver: "json-file"
-      options:
-        compress: "true"
-        max-file: "10"
-        max-size: "50m"
-  
-  pab-blockfrost:
-    image:  372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-oracle-pab:latest
-    profiles:
-      - backend
-    depends_on:
-      - cardano-node
-      - postgres
-      - cardano-wallet
-    volumes:
-      - node-ipc:/ipc
-      - "../Charli3-Backend-setup:/testnet"
-    ports:
-      - 9080:9080
-    command: bash -c "pab --config /testnet/pab-config-testnet.yml webserver --passphrase pab123456789 && tail -f /dev/null"
-
-    restart: always
-    deploy:
-      resources:
-        limits:
-            cpus: '1.5'
-            memory: 10gb
-    logging:
-      driver: "json-file"
-      options:
-        compress: "true"
-        max-file: "10"
-        max-size: "50m"
-  
   charli3-backend:
-    image: 372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-backend-v2:latest
-    profiles:
-      - backend
-
-    depends_on:
-      - pab-blockfrost
+    image: 372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-backend-v2:pycardano-poetry
     volumes:
-      - "./config.ini:/app/config.ini"
+      - "./config.yml:/app/config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -112,8 +12,3 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
-  
-volumes:
-        node-ipc:
-        wallet-mainnet-db:
-        wallet-testnet-db:
