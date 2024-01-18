@@ -1,8 +1,8 @@
 version: "3.5"
 
 services:
-  charli3-backend:
-    image: 372773567348.dkr.ecr.us-west-1.amazonaws.com/charli3-backend-v2:pycardano-poetry
+  charli3-node-backend:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v1.5.0
     volumes:
       - "./config.yml:/app/config.yml"
     restart: always
