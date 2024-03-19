@@ -1,0 +1,56 @@
+Updater:
+  update_inter: 120
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: # <--- Insert your mnemonic here
+  oracle_curr: 6167e3550a74ead031eaebe9ebddbf4d8fb9d9398568261d41bc9e97
+  oracle_addr: addr1w9cjzxxgpyqfkd9hgl2rc7qmz963nq4ml2l63t9zzpmj9vsf3pldw
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  reference_script_input: 6526673e89d0f2daa260e2e71e0f46cd8a2245ec3a41352019ea957dd0dc2a85#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+ChainQuery:
+  network: MAINNET
+  blockfrost:
+    base_url: https://cardano-mainnet.blockfrost.io/api
+    project_id: # <--- Insert your project_id here
+  ogmios:
+    ws_url: # <--- Insert your ogmios ws_url here
+
+Rate:
+  base_currency:
+    vyfi:
+      type: vyfi
+      pool_tokens: ADA-NMKR
+      pool_address: addr1zyl65mfwq2u9duf0h7paqsgg2zqesadtge944ldf6n082pg9gczwem2qwpjcgh3dr055wfyznfc209ke40hayakfmavsxzkxnc
+      minting_a_token_policy: null
+      minting_b_token_policy: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489
+      get_second_pool_price: false
+      quote_currency: false
+    minswap:
+      type: minswap
+      pool_tokens: ADA-NMKR
+      pool_id: 5aebbb6030552e9313c5b8cd2c3eb710efd519fdf6c1b8861a64791e4cb7390c
+      get_second_pool_price: false
+      quote_currency: false
+    sundaeswap:
+      type: sundaeswap
+      symbol: NMKR
+      quote_currency: false
+    wingriders:
+      type: wingriders
+      symbol: NMKR
+      currency_symbol: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489
+      token_name: 4e4d4b52
+      quote_currency: false
+    muesliswap:
+      type: muesliswap
+      symbol: NMKR/ADA
+      currency_symbol: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489
+      token_name: 4e4d4b52
+      quote_currency: false

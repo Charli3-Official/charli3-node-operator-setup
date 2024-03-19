@@ -1,0 +1,186 @@
+Updater:
+  update_inter: 180
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: # <--- Insert your mnemonic here
+  oracle_curr: aaff38a4fd17c66f66e0ac7d578d0ff30b2b1ec0d7638eb007db04cc
+  oracle_addr: addr1wymrv99280fhms8vfdaersu0u92zfgs00gmdzpz2f9n65hsyx9fuw
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 7e495557f83ee369a6ab84fd4f749dd841d0c0f37322b2630550cf886a2b01c3#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+ChainQuery:
+  network: MAINNET
+  ogmios:
+    ws_url: # <--- Insert your Ogmios websocket URL here
+
+Rate:
+  base_currency:
+    binance_usdt:
+      type: binance
+      symbol: ADAUSDT
+      quote_currency: true
+      rate_calculation_method: divide
+    xt:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=ada_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    gate:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/ada_usdt
+      json_path: ["last"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    crypto:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.crypto.com
+      path: /v2/public/get-ticker?instrument_name=ADA_USDT
+      json_path: ["result","data",0,"a"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    huobi:
+      type: generic
+      symbol: ADAUSDT
+      api_url: https://api.huobi.pro
+      path: /market/trade?symbol=adausdt
+      json_path: ["tick","data",0,"price"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    coinbase:
+      type: generic
+      symbol: ADA-USD
+      api_url: https://api.exchange.coinbase.com
+      path: /products/ADA-USD/ticker/
+      json_path: ["price"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    kraken:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.kraken.com
+      path: /0/public/Ticker?pair=ADAUSD
+      json_path: ["result","ADAUSD","o"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    btse:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.btse.com
+      path: /spot/api/v3.2/price?symbol=ADA-USD
+      json_path: [0,"lastPrice"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    bitfinex:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.bitfinex.com
+      path: /v2/ticker/tADAUSD
+      json_path: [6]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    binance_busd:
+      type: binance
+      symbol: ADABUSD
+      quote_currency: true
+      rate_calculation_method: divide
+    bitget:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://api.bitget.com
+      path: /api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL
+      json_path: ["data","close"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    kucoin:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://api.kucoin.com
+      path: /api/v1/market/orderbook/level1?symbol=ADA-USDC
+      json_path: ["data","price"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+    okx:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://www.okx.com
+      path: /api/v5/market/ticker?instId=ADA-USDC
+      json_path: ["data",0,"last"]
+      key: {}
+      quote_currency: true
+      rate_calculation_method: divide
+  quote_currency:
+    kraken:
+      type: generic
+      symbol: EUR-USD
+      api_url: 'https://api.kraken.com'
+      path: /0/public/Ticker?pair=EURUSD
+      json_path: ["result","ZEURZUSD","o"]
+      key: {}
+    bitstamp:
+      type: generic
+      symbol: EUR-USD
+      api_url: 'https://www.bitstamp.net'
+      path: api/v2/ticker/eurusd/
+      json_path: ["last"]
+      key: {}
+    coingecko:
+      type: coingecko
+      tid: EURC
+      vs_currency: usd
+    blockchain:
+      type: generic
+      symbol: EUR-USD
+      api_url: 'https://api.blockchain.com'
+      path: /v3/exchange/tickers/EUR-USD
+      json_path: ["last_trade_price"]
+      key: {}
+    huobi:
+      type: generic
+      symbol: EUR-USDt
+      api_url: 'https://api.huobi.pro'
+      path: /market/trade?symbol=eurusdt
+      json_path: ["tick","data",0,"price"]
+      key: {}
+    bitget:
+      type: generic
+      symbol: EURT-USDt
+      api_url: 'https://api.bitget.com'
+      path: /api/spot/v1/market/ticker?symbol=EURTUSDt_SPBL
+      json_path: ["data","close"]
+      key: {}
+    xt:
+      type: generic
+      symbol: EURT-USDT
+      api_url: 'https://sapi.xt.com'
+      path: /v4/public/ticker?symbol=EURT_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    coindex:
+      type: generic
+      symbol: EURT-USD
+      api_url: 'https://coincodex.com'
+      path: /api/coincodex/get_coin/eurt
+      json_path: ["last_price_usd"]
+      key: {}
