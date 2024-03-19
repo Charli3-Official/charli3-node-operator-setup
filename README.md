@@ -37,6 +37,7 @@ Before you begin, ensure that you meet the following prerequisites:
    Prepare your node's mnemonic and its public key hash. It's crucial to coordinate with the Charli3 team to have your node's public key hash configured with the oracle feed you intend to operate.
 
 4. **Oracle Feed Configuration Files**
+
    Each configuration YAML file contains the node configuration for that specific oracle feed running on the Cardano mainnet. For example, ada_usd_v3_config.yml contains the ADA-USD mainnet feed details, including data sources, oracle feed, and blockchain configuration. Ensure you review and adjust these files as necessary for the oracle feeds you intend to run.
 
 5. **Configuration File Setup**
