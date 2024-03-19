@@ -36,14 +36,17 @@ Before you begin, ensure that you meet the following prerequisites:
 
    Prepare your node's mnemonic and its public key hash. It's crucial to coordinate with the Charli3 team to have your node's public key hash configured with the oracle feed you intend to operate.
 
-4. **Configuration File Setup**
+4. **Oracle Feed Configuration Files**
+   Each configuration YAML file contains the node configuration for that specific oracle feed running on the Cardano mainnet. For example, ada_usd_v3_config.yml contains the ADA-USD mainnet feed details, including data sources, oracle feed, and blockchain configuration. Ensure you review and adjust these files as necessary for the oracle feeds you intend to run.
+
+5. **Configuration File Setup**
 
    You'll need to set up the configuration yaml file(s) with the following details:
    - The mnemonic
    - Ogmios URL
    - Blockfrost project ID (optional, if needed)
 
-5. **Running Your Node**
+6. **Running Your Node**
 
    Ensure your node wallet is funded with sufficient ADA for operations. With the configuration set, start your node:
 
