@@ -1,0 +1,30 @@
+Updater:
+  update_inter: 120
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: # 24 word mnemonic
+  oracle_curr: 857c5f709b3951b50e1a235cb0b1c551ae3aea8d95c9311b9571782a
+  oracle_addr: addr_test1wpu0ypdndqfc88j8ax9pq3aymj0d3aar6f37kxda2wnjdkgmtjks8
+  c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
+  c3_token_name: PaymentToken
+  c3_oracle_nft_name: "OracleFeed"
+  c3_oracle_nft_hash: "5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4"
+  c3_oracle_rate_address: "addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj"
+
+ChainQuery:
+  network: TESTNET
+  ogmios:
+    ws_url: # ws url for ogmios
+    kupo_url: # kupo url
+
+Rate:
+  base_currency:
+    icd:
+      type: generic
+      symbol: USD
+      api_url: http://35.222.158.149:3000
+      path: /api/mehen/eod-balance/total
+      json_path: ["TotalEodBalance"]
+      key: {"x-api-key":"8f5691011cbe9123c8ac8dedffcff842c826cdad7b8fe4dd459425ad0e818aae"}

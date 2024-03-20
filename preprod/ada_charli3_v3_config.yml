@@ -1,0 +1,42 @@
+Updater:
+  update_inter: 120
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: # 24 word mnemonic
+  oracle_curr: 5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4
+  oracle_addr: addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj
+  c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
+  c3_token_name: PaymentToken
+
+ChainQuery:
+  network: TESTNET
+  # blockfrost:
+  #   base_url: https://cardano-preprod.blockfrost.io/api
+  #   project_id: "project_id"
+  ogmios:
+    ws_url: # ws url for ogmios
+    kupo_url: # kupo url
+
+Rate:
+  base_currency:
+    inverseRate:
+      type: inverserate
+      symbol: ADA/CHARLI3
+      quote_currency: True
+      rate_calculation_method: "divide"
+  quote_currency:
+    sundaeswap:
+      type: sundaeswap
+      symbol: charli3
+    muesliswap:
+      type: muesliswap
+      symbol: CHARLI3/ADA
+      currency_symbol: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+      token_name: 434841524c4933
+    wingriders:
+      type: wingriders
+      symbol: CHARLI3/ADA
+      currency_symbol: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+      token_name: 434841524c4933

@@ -1,0 +1,50 @@
+version: "3.5"
+
+services:  
+  charli3-ada-charli3-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v1.6.7
+    volumes:
+      - "./ada_charli3_v3_config.yml:/app/config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+
+  charli3-ada-usd-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v1.6.7
+    volumes:
+      - "./ada_usd_v3_config.yml:/app/config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+
+  charli3-shen-usd-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v1.6.7
+    volumes:
+      - "./shen_usd_v3_config.yml:/app/config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+
+  charli3-mehen-usd-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v1.6.7
+    volumes:
+      - "./mehen_usd_v3_config.yml:/app/config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"

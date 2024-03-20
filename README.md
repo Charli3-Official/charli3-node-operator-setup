@@ -34,7 +34,7 @@ Before you begin, ensure that you meet the following prerequisites:
 
 3. **Mnemonic and Public Key Hash Setup**
 
-   Prepare your node's mnemonic and its public key hash. It's crucial to coordinate with the Charli3 team to have your node's public key hash configured with the oracle feed you intend to operate.
+   Prepare your node's mnemonic (24 Words needed) and its public key hash. It's crucial to coordinate with the Charli3 team to have your node's public key hash configured with the oracle feed you intend to operate.
 
 4. **Oracle Feed Configuration Files**
 

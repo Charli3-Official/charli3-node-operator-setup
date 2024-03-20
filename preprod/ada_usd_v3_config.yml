@@ -1,0 +1,117 @@
+Updater:
+  update_inter: 150
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: # 24 word mnemonic
+  oracle_curr: 1116903479e7320b8e4592207aaebf627898267fcd80e2d9646cbf07
+  oracle_addr: addr_test1wzn5ee2qaqvly3hx7e0nk3vhm240n5muq3plhjcnvx9ppjgf62u6a
+  c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
+  c3_token_name: PaymentToken
+  # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_name: "OracleFeed"
+  c3_oracle_nft_hash: "5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4"
+  c3_oracle_rate_address: "addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj"
+
+ChainQuery:
+  network: TESTNET
+  # blockfrost:
+  #   base_url: https://cardano-preprod.blockfrost.io/api
+  #   project_id: "project_id"
+  ogmios:
+    ws_url: # ws url for ogmios
+    kupo_url: # kupo url
+
+Rate:
+  base_currency:
+    binance_usdt:
+      type: binance
+      symbol: ADAUSDT
+    xt:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=ada_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    gate:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/ada_usdt
+      json_path: ["last"]
+      key: {}
+    crypto:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.crypto.com
+      path: /v2/public/get-ticker?instrument_name=ADA_USDT
+      json_path: ["result","data",0,"a"]
+      key: {}
+    huobi:
+      type: generic
+      symbol: ADAUSDT
+      api_url: https://api.huobi.pro
+      path: /market/trade?symbol=adausdt
+      json_path: ["tick","data",0,"price"]
+      key: {}
+    coinbase:
+      type: generic
+      symbol: ADA-USD
+      api_url: https://api.exchange.coinbase.com
+      path: /products/ADA-USD/ticker/
+      json_path: ["price"]
+      key: {}
+    kraken:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.kraken.com
+      path: /0/public/Ticker?pair=ADAUSD
+      json_path: ["result","ADAUSD","o"]
+      key: {}
+    btse:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.btse.com
+      path: /spot/api/v3.2/price?symbol=ADA-USD
+      json_path: [0,"lastPrice"]
+      key: {}
+    bitfinex:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.bitfinex.com
+      path: /v2/ticker/tADAUSD
+      json_path: [6]
+      key: {}
+    binance_busd:
+      type: binance
+      symbol: ADABUSD
+    bitrue:
+      type: generic
+      symbol: ADABUSD
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=adabusd
+      json_path: ["price"]
+      key: {}
+    bitget:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://api.bitget.com
+      path: /api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL
+      json_path: ["data","close"]
+      key: {}
+    kucoin:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://api.kucoin.com
+      path: /api/v1/market/orderbook/level1?symbol=ADA-USDC
+      json_path: ["data","price"]
+      key: {}
+    okx:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://www.okx.com
+      path: /api/v5/market/ticker?instId=ADA-USDC
+      json_path: ["data",0,"last"]
+      key: {}

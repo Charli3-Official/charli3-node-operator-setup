@@ -1,0 +1,98 @@
+Updater:
+  update_inter: 150
+  verbosity: INFO
+  percent_resolution: 10000  
+
+Node:
+  mnemonic: # 24 word mnemonic
+  oracle_curr: 2b556df9f37c04ef31b8f7f581c4e48174adcf5041e8e52497d81556
+  oracle_addr: addr_test1wqlcn3pks3xdptxjw9pqrqtcx6ev694sstsruw3phd57ttg0lh0zq
+  c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
+  c3_token_name: PaymentToken
+  # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_name: "OracleFeed"
+  c3_oracle_nft_hash: "5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4"
+  c3_oracle_rate_address: "addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj"
+
+ChainQuery:
+  network: TESTNET
+  # blockfrost:
+  #   base_url: https://cardano-preprod.blockfrost.io/api
+  #   project_id: "project_id"
+  ogmios:
+    ws_url: # ws url for ogmios
+    kupo_url: # kupo url
+
+Rate:
+  base_currency:
+    sundaeswap:
+      type: sundaeswap
+      symbol: Shen
+      quote_currency: True
+    # minswap:
+    #   type: minswap
+    #   symbol: SHEN/ADA
+    #   currency_symbol: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61
+    #   token_name: 5368656e4d6963726f555344
+    #   quote_currency: True
+    # muesliswap:
+    #   type: muesliswap
+    #   symbol: SHEN/ADA
+    #   currency_symbol: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61
+    #   token_name: 5368656e4d6963726f555344
+    #   quote_currency: True
+    wingriders:
+      type: wingriders
+      symbol: SHEN/ADA
+      currency_symbol: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61
+      token_name: 5368656e4d6963726f555344
+      quote_currency: True
+    coingecko:
+      type: coingecko
+      tid: shen
+      vs_currency: usd
+    coinmarketcap:
+      type: generic
+      symbol: SHEN-USD
+      api_url: https://pro-api.coinmarketcap.com
+      path: /v2/cryptocurrency/quotes/latest?symbol=shen
+      json_path: ["data","SHEN",0,"quote","USD","price"]
+      key: {
+        "X-CMC_PRO_API_KEY": "cc8dd3a2-67f9-4bc6-8378-c0f9823109e0"
+      }
+  quote_currency:
+    binance-us:
+      type: generic
+      symbol: ADAUSDT
+      api_url: https://api.binance.us
+      path: /api/v3/avgPrice?symbol=ADAUSDT
+      json_path: ["price"]
+      key: {}
+    kucoin:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.kucoin.com
+      path: /api/v1/prices?currencies=ADA
+      json_path: ["data","ADA"]
+      key: {}
+    kraken:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.kraken.com
+      path: /0/public/Ticker?pair=ADAUSD
+      json_path: ["result","ADAUSD","o"]
+      key: {}
+    bitrue:
+      type: generic
+      symbol: ADAUSDT
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=adausdt
+      json_path: ["price"]
+      key: {}
+    coinbase:
+      type: generic
+      symbol: ADA-USD
+      api_url: https://api.exchange.coinbase.com
+      path: /products/ADA-USD/ticker/
+      json_path: ["price"]
+      key: {}
