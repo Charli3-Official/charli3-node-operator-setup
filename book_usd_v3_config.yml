@@ -9,16 +9,16 @@ Node:
   oracle_addr: addr1w8ny03yac08cg7fsga6usveag4za2t0whmfzjdqflq3vu5qxarwzw
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
   c3_token_name: CHARLI3
-  reference_script_input: 90dcb61413be3e73ebe3828bcf41b9f4616e6c8259ae0141c839bd24833c43fa#0
+  # reference_script_input: 90dcb61413be3e73ebe3828bcf41b9f4616e6c8259ae0141c839bd24833c43fa#0
   c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
 
 ChainQuery:
   network: MAINNET
-  blockfrost:
-    base_url: https://cardano-mainnet.blockfrost.io/api
-    project_id: # blockfrost project id
+  # blockfrost:
+  #   base_url: https://cardano-mainnet.blockfrost.io/api
+  #   project_id: # blockfrost project id
   ogmios:
     ws_url: # ogmios websocket url
 
