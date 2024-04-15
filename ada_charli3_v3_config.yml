@@ -15,6 +15,7 @@ ChainQuery:
   network: MAINNET
   ogmios:
     ws_url: # your ogmios websocket url
+    kupo_url: # your kupo url
 
 Rate:
   base_currency:
