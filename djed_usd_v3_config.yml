@@ -61,6 +61,15 @@ Rate:
       json_path: ["djed","usd"]
       key: 
         x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
+    coinmarketcap:
+      type: generic
+      symbol: DJED-USD
+      api_url: https://pro-api.coinmarketcap.com
+      path: /v2/cryptocurrency/quotes/latest?symbol=djed
+      json_path: ["data","DJED",0,"quote","USD","price"]
+      key: {
+        "X-CMC_PRO_API_KEY": "cc8dd3a2-67f9-4bc6-8378-c0f9823109e0"
+      }
   quote_currency:
     binance_usdt:
       type: binance
