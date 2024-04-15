@@ -35,7 +35,7 @@ Rate:
       type: minswap
       token_a_name: ADA
       token_a_decimal: 6
-      token_b_name: IUSD
+      token_b_name: iUSD
       token_b_decimal: 6
       pool_id: 8fde43a3f0b9f0e6f63bec7335e0b855c6b62a4dc51f1b762ccb6dfbbafcfe47
       get_second_pool_price: false
