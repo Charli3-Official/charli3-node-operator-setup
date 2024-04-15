@@ -13,9 +13,6 @@ Node:
 
 ChainQuery:
   network: MAINNET
-  # blockfrost:
-  #   base_url: https://cardano-mainnet.blockfrost.io/api
-  #   project_id: # your blockfrost project id
   ogmios:
     ws_url: # your ogmios websocket url
 
@@ -30,6 +27,7 @@ Rate:
     sundaeswap:
       type: sundaeswap
       symbol: charli3
+      pool_ident: f302
     muesliswap:
       type: muesliswap
       symbol: CHARLI3/ADA
@@ -42,7 +40,10 @@ Rate:
       token_name: 434841524c4933
     minswap:
       type: minswap
-      pool_tokens: ADA-C3
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: CHARLI3
+      token_b_decimal: 6
       pool_id: 2cb05a0cec80aa158dcc9faddf9de6a20a2acec78fa4101e3d271df7947fbcc5
       get_second_pool_price: false
     vyfi:

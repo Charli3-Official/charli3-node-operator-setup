@@ -16,9 +16,6 @@ Node:
 
 ChainQuery:
   network: MAINNET
-  # blockfrost:
-  #   base_url: https://cardano-mainnet.blockfrost.io/api
-  #   project_id: # blockfrost project id
   ogmios:
     ws_url: # ogmios ws url
 
@@ -35,7 +32,10 @@ Rate:
       rate_calculation_method: multiply
     minswap:
       type: minswap
-      pool_tokens: ADA-iUSD
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: IUSD
+      token_b_decimal: 6
       pool_id: 8fde43a3f0b9f0e6f63bec7335e0b855c6b62a4dc51f1b762ccb6dfbbafcfe47
       get_second_pool_price: false
       quote_currency: true
@@ -54,6 +54,14 @@ Rate:
       token_name: "69555344"
       quote_currency: True
       rate_calculation_method: multiply
+    coingecko:
+      type: generic
+      symbol: IUSD-USD
+      api_url: https://pro-api.coingecko.com
+      path: /api/v3/simple/price?ids=iusd&vs_currencies=usd
+      json_path: ["iusd","usd"]
+      key: 
+        x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
   quote_currency:
     binance_usdt:
       type: binance

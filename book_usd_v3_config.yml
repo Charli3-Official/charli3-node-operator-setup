@@ -16,9 +16,6 @@ Node:
 
 ChainQuery:
   network: MAINNET
-  # blockfrost:
-  #   base_url: https://cardano-mainnet.blockfrost.io/api
-  #   project_id: # blockfrost project id
   ogmios:
     ws_url: # ogmios websocket url
 
@@ -35,10 +32,14 @@ Rate:
     sundaeswap:
       type: sundaeswap
       symbol: book
+      pool_ident: 0805
       quote_currency: true
     minswap:
       type: minswap
-      pool_tokens: ADA-BOOK
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: BOOK
+      token_b_decimal: 6
       pool_id: 2ed309a7ecb6d0d5e00dca0bcc3924fdc0627a5fb631f1acc4deb898b14ee8bd
       get_second_pool_price: false
       quote_currency: true
@@ -49,9 +50,13 @@ Rate:
       token_name: 424f4f4b
       quote_currency: true
     coingecko:
-      type: coingecko
-      tid: book-2
-      vs_currency: usd
+      type: generic
+      symbol: BOOK-USD
+      api_url: https://pro-api.coingecko.com
+      path: /api/v3/simple/price?ids=book-2&vs_currencies=usd
+      json_path: ["book-2","usd"]
+      key: 
+        x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
   quote_currency:
     binance_usdt:
       type: binance

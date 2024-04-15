@@ -16,9 +16,6 @@ Node:
 
 ChainQuery:
   network: MAINNET
-  # blockfrost:
-  #   base_url: https://cardano-mainnet.blockfrost.io/api
-  #   project_id: # <--- Insert your project_id here
   ogmios:
     ws_url: # <--- Insert your ogmios ws_url here
 
@@ -34,13 +31,17 @@ Rate:
       quote_currency: false
     minswap:
       type: minswap
-      pool_tokens: ADA-NMKR
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: NMKR
+      token_b_decimal: 6
       pool_id: 5aebbb6030552e9313c5b8cd2c3eb710efd519fdf6c1b8861a64791e4cb7390c
       get_second_pool_price: false
       quote_currency: false
     sundaeswap:
       type: sundaeswap
-      symbol: NMKR
+      symbol: 
+      pool_ident: 0e03
       quote_currency: false
     wingriders:
       type: wingriders

@@ -16,9 +16,6 @@ Node:
 
 ChainQuery:
   network: MAINNET
-  # blockfrost:
-  #   base_url: https://cardano-mainnet.blockfrost.io/api
-  #   project_id: # <--- Insert your blockfrost project id here
   ogmios:
     ws_url: # <--- Insert your ogmios ws url here
 
@@ -43,15 +40,27 @@ Rate:
     sundaeswap:
       type: sundaeswap
       symbol: DJED
+      pool_ident: f803
       quote_currency: true
       rate_calculation_method: multiply
     minswap:
       type: minswap
-      pool_tokens: ADA-DJED
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: DjedMicroUSD
+      token_b_decimal: 6
       pool_id: d944eda9d4fd8c26171a4362539bfd4ccf35f5a4d0cc7525b22327b997a4f4b9
       get_second_pool_price: false
       quote_currency: true
       rate_calculation_method: multiply
+    coingecko:
+      type: generic
+      symbol: DJED-USD
+      api_url: https://pro-api.coingecko.com
+      path: /api/v3/simple/price?ids=djed&vs_currencies=usd
+      json_path: ["djed","usd"]
+      key: 
+        x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
   quote_currency:
     binance_usdt:
       type: binance

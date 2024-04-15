@@ -16,9 +16,6 @@ Node:
 
 ChainQuery:
   network: MAINNET
-  # blockfrost:
-  #   base_url: https://cardano-mainnet.blockfrost.io/api
-  #   project_id: # <--- Insert your blockfrost project id here
   ogmios:
     ws_url: # <--- Insert your ogmios ws url here
 
@@ -35,7 +32,10 @@ Rate:
       rate_calculation_method: multiply
     minswap:
       type: minswap
-      pool_tokens: ADA-SHEN
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: ShenMicroUSD
+      token_b_decimal: 6
       pool_id: 53225313968e796f2c1e0b57540a13c3b81e06e2ed2637ac1ea9b9f4e27e3dc4
       get_second_pool_price: false
       quote_currency: true
@@ -50,8 +50,17 @@ Rate:
     sundaeswap:
       type: sundaeswap
       symbol: SHEN
+      pool_ident: c704
       quote_currency: true
       rate_calculation_method: multiply
+    coingecko:
+      type: generic
+      symbol: SHEN-USD
+      api_url: https://pro-api.coingecko.com
+      path: /api/v3/simple/price?ids=shen&vs_currencies=usd
+      json_path: ["shen","usd"]
+      key: 
+        x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
   quote_currency:
     binance_usdt:
       type: binance
