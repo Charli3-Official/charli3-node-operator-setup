@@ -41,7 +41,7 @@ Rate:
       quote_currency: false
     sundaeswap:
       type: sundaeswap
-      symbol: 
+      symbol: NMKR
       pool_ident: 0e03
       quote_currency: false
     wingriders:
