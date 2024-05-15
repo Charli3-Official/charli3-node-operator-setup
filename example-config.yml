@@ -1,7 +1,10 @@
 Updater:
-  update_inter: 180
+  update_inter: 150
   verbosity: INFO
   percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
 
 Node:
   mnemonic: xxx xxx xxx
@@ -10,7 +13,7 @@ Node:
   aggstate_nft: AggState
   oracle_nft: OracleFeed
   reward_nft: Reward
-  oracle_addr: addr_test1wr2x24tlcpr37sjrscaqsh6z4tue3k7zx8qt8n0kscen2jct0wkz7
+  oracle_address: addr_test1wr2x24tlcpr37sjrscaqsh6z4tue3k7zx8qt8n0kscen2jct0wkz7
   c3_token_hash: 436941ead56c61dbf9b92b5f566f7d5b9cac08f8c957f28f0bd60d4b
   c3_token_name: PAYMENTTOKEN
   ## Optional parameters

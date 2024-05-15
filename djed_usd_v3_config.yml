@@ -1,18 +1,22 @@
 Updater:
-  update_inter: 120
+  update_inter: 150
   verbosity: INFO
   percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
 
 Node:
   mnemonic: # <--- Insert your mnemonic here
   oracle_curr: a665bb42594646eaaed8ed59ada592fb8300775df916a4a5406ffa96
-  oracle_addr: addr1w9w2ka2cue4ytyhsr8j8g3l7a9z9jvzgvpm4wj476dpfldq2shdcx
+  oracle_address: addr1w9w2ka2cue4ytyhsr8j8g3l7a9z9jvzgvpm4wj476dpfldq2shdcx
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
   c3_token_name: CHARLI3
   # reference_script_input: fd2f28101a70dad92bc97e7d3b05da6e8d476507b931c0e40466684b42d6c625#0
   c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
 ChainQuery:
   network: MAINNET
@@ -22,6 +26,15 @@ ChainQuery:
 
 Rate:
   base_currency:
+    coinmarketcap:
+      type: generic
+      symbol: DJED-USD
+      api_url: https://pro-api.coinmarketcap.com
+      path: /v2/cryptocurrency/quotes/latest?symbol=djed
+      json_path: ["data","DJED",0,"quote","USD","price"]
+      key: {
+        "X-CMC_PRO_API_KEY": "cc8dd3a2-67f9-4bc6-8378-c0f9823109e0"
+      }
     vyfi:
       type: vyfi
       pool_tokens: ADA-DjedMicroUSD
@@ -62,15 +75,6 @@ Rate:
       json_path: ["djed","usd"]
       key: 
         x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
-    coinmarketcap:
-      type: generic
-      symbol: DJED-USD
-      api_url: https://pro-api.coinmarketcap.com
-      path: /v2/cryptocurrency/quotes/latest?symbol=djed
-      json_path: ["data","DJED",0,"quote","USD","price"]
-      key: {
-        "X-CMC_PRO_API_KEY": "cc8dd3a2-67f9-4bc6-8378-c0f9823109e0"
-      }
   quote_currency:
     binance_usdt:
       type: binance

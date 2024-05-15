@@ -1,18 +1,22 @@
 Updater:
-  update_inter: 120
+  update_inter: 150
   verbosity: INFO
   percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
 
 Node:
   mnemonic: # mnemonic for the oracle node
   oracle_curr: ba0b98665d9a18c04c50793768780dff7826e2bcff2ff0909b708fa0
-  oracle_addr: addr1w8ny03yac08cg7fsga6usveag4za2t0whmfzjdqflq3vu5qxarwzw
+  oracle_address: addr1w8ny03yac08cg7fsga6usveag4za2t0whmfzjdqflq3vu5qxarwzw
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
   c3_token_name: CHARLI3
   # reference_script_input: 90dcb61413be3e73ebe3828bcf41b9f4616e6c8259ae0141c839bd24833c43fa#0
   c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
 ChainQuery:
   network: MAINNET
@@ -22,6 +26,14 @@ ChainQuery:
 
 Rate:
   base_currency:
+    coingecko:
+      type: generic
+      symbol: BOOK-USD
+      api_url: https://pro-api.coingecko.com
+      path: /api/v3/simple/price?ids=book-2&vs_currencies=usd
+      json_path: ["book-2","usd"]
+      key: 
+        x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
     vyfi:
       type: vyfi
       pool_tokens: ADA-BOOK
@@ -50,14 +62,6 @@ Rate:
       currency_symbol: 51a5e236c4de3af2b8020442e2a26f454fda3b04cb621c1294a0ef34
       token_name: 424f4f4b
       quote_currency: true
-    coingecko:
-      type: generic
-      symbol: BOOK-USD
-      api_url: https://pro-api.coingecko.com
-      path: /api/v3/simple/price?ids=book-2&vs_currencies=usd
-      json_path: ["book-2","usd"]
-      key: 
-        x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
   quote_currency:
     binance_usdt:
       type: binance

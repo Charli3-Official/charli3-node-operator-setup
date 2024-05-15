@@ -1,18 +1,22 @@
 Updater:
-  update_inter: 120
+  update_inter: 150
   verbosity: INFO
   percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
 
 Node:
   mnemonic: # mnemonic for the oracle node
   oracle_curr: 73105a3662d59e002a71c12bc0017778210f4a13c54e39590cf6fc8b
-  oracle_addr: addr1wxlla0qk46qqlxme94y0x7szq5pkppn4vf5p542jykaa92qvmzdf7
+  oracle_address: addr1wxlla0qk46qqlxme94y0x7szq5pkppn4vf5p542jykaa92qvmzdf7
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
   c3_token_name: CHARLI3
   # reference_script_input: 
   c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
 ChainQuery:
   network: MAINNET

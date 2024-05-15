@@ -1,18 +1,22 @@
 Updater:
-  update_inter: 120
+  update_inter: 150
   verbosity: INFO
   percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
 
 Node:
   mnemonic: # mnemonic for the oracle node
   oracle_curr: de640fa36c56ca8eab2ff97dbeb5c3a297452fd133a1f77d7c9d3dbc
-  oracle_addr: addr1wyxw3p0kv0wxjw23zpxs7kf3hrfvpe0wv44jkw0ey3xcrysustx3f
+  oracle_address: addr1wyxw3p0kv0wxjw23zpxs7kf3hrfvpe0wv44jkw0ey3xcrysustx3f
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
   c3_token_name: CHARLI3
   # reference_script_input: f29c360580c771c429fadc57c6c0b2e171c50f3fd3d01ece14bee96a7eb7cfc9#0
   c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
 ChainQuery:
   network: MAINNET
@@ -22,6 +26,13 @@ ChainQuery:
 
 Rate:
   base_currency:
+    muesliswap:
+      type: muesliswap
+      symbol: IUSD/ADA
+      currency_symbol: f66d78b4a3cb3d37afa0ec36461e51ecbde00f26c8f0a68f94b69880
+      token_name: "69555344"
+      quote_currency: True
+      rate_calculation_method: multiply
     vyfi:
       type: vyfi
       pool_tokens: ADA-iUSD
@@ -47,13 +58,6 @@ Rate:
       currency_symbol: f66d78b4a3cb3d37afa0ec36461e51ecbde00f26c8f0a68f94b69880
       token_name: "69555344"
       quote_currency: true
-      rate_calculation_method: multiply
-    muesliswap:
-      type: muesliswap
-      symbol: IUSD/ADA
-      currency_symbol: f66d78b4a3cb3d37afa0ec36461e51ecbde00f26c8f0a68f94b69880
-      token_name: "69555344"
-      quote_currency: True
       rate_calculation_method: multiply
     coingecko:
       type: generic
