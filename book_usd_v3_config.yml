@@ -34,6 +34,13 @@ Rate:
       json_path: ["book-2","usd"]
       key: 
         x-cg-pro-api-key: CG-N8W262z5GCZSFs1fREq3Gi1A
+    mexc:
+      type: generic
+      symbol: BOOK-USDT
+      api_url: https://www.mexc.com
+      path: /open/api/v2/market/ticker?symbol=BOOK_USDT
+      json_path: ["data",0,"last"]
+      key: {}
     vyfi:
       type: vyfi
       pool_tokens: ADA-BOOK
