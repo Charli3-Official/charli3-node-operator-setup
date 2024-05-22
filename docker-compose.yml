@@ -139,6 +139,18 @@ services:
         max-file: "10"
         max-size: "50m"
 
+  charli3-newm-usd-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    volumes:
+      - "./newm_usd_v3_config.yml:/app/config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+
 
 volumes:
   charli3-node-operator-db:
