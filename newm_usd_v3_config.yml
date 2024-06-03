@@ -25,6 +25,13 @@ ChainQuery:
 
 Rate:
   base_currency:
+    bitrue:
+      type: generic
+      symbol: NEWM/USD
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=newmusdt
+      json_path: ["price"]
+      key: {}
     muesliswap:
       type: muesliswap
       symbol: NEWM/ADA
