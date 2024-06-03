@@ -88,13 +88,6 @@ Rate:
     binance_busd:
       type: binance
       symbol: ADABUSD
-    bitrue:
-      type: generic
-      symbol: ADABUSD
-      api_url: https://openapi.bitrue.com
-      path: /api/v1/ticker/price?symbol=adabusd
-      json_path: ["price"]
-      key: {}
     bitget:
       type: generic
       symbol: ADA-USDC
