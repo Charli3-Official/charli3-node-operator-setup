@@ -1,13 +1,7 @@
-Updater:
-  update_inter: 150
-  verbosity: INFO
-  percent_resolution: 10000  
-
-database:
-  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+include: dynamic_config.yml
 
 Node:
-  mnemonic: # <--- insert your mnemonic here
+  mnemonic: <%= @mnemonic_ada_usd %>
   oracle_curr: 08c56c0fa73748a23c3bc1d9e6a60a4187416fc4ff8fe3475506990e
   oracle_address: addr1wyvxns52tsgz8ggvrh4np5gjyfk0g5fshqq2ytvu9t7pe8qp3adw6
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
@@ -17,12 +11,6 @@ Node:
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
   node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
-
-ChainQuery:
-  network: MAINNET
-  ogmios:
-    ws_url: # <--- insert your ogmios websocket url here
-    # kupo_url: # <--- insert your kupo url here
 
 Rate:
   base_currency:

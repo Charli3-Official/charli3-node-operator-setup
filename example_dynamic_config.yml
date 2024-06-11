@@ -1,0 +1,25 @@
+Updater:
+  update_inter: 150
+  verbosity: INFO
+  percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+
+ChainQuery:
+  network: MAINNET
+  ogmios:
+    ws_url: ws://10.128.0.3:1337
+    kupo_url: http://10.128.0.3:1442
+
+mnemonic_ada_charli3: 
+mnemonic_ada_euro: 
+mnemonic_ada_chf: 
+mnemonic_ada_usd: 
+mnemonic_book_usd: 
+mnemonic_djed_usd: 
+mnemonic_iusd_usd: 
+mnemonic_mehen_usd: 
+mnemonic_newm_usd: 
+mnemonic_nmkr_ada: 
+mnemonic_shen_usd: 

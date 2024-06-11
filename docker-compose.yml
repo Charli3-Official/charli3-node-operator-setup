@@ -20,9 +20,10 @@ services:
         max-size: "50m"
 
   charli3-ada-charli3-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./ada_charli3_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -32,9 +33,10 @@ services:
         max-size: "50m"
 
   charli3-ada-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./ada_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -44,9 +46,10 @@ services:
         max-size: "50m"
 
   charli3-book-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./book_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -56,9 +59,10 @@ services:
         max-size: "50m"
 
   charli3-djed-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./djed_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -68,9 +72,10 @@ services:
         max-size: "50m"
 
   charli3-iusd-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./iusd_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -80,9 +85,10 @@ services:
         max-size: "50m"  
 
   charli3-nmkr-ada-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./nmkr_ada_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -92,9 +98,10 @@ services:
         max-size: "50m"
 
   charli3-ada-euro-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./ada_euro_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -104,9 +111,10 @@ services:
         max-size: "50m"
 
   charli3-ada-chf-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./ada_chf_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -116,9 +124,10 @@ services:
         max-size: "50m"
 
   charli3-shen-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./shen_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -128,9 +137,10 @@ services:
         max-size: "50m"
 
   charli3-mehen-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./mehen_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"
@@ -140,9 +150,10 @@ services:
         max-size: "50m"
 
   charli3-newm-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.4
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.0.7
     volumes:
       - "./newm_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
     restart: always
     logging:
       driver: "json-file"

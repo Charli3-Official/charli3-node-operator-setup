@@ -1,3 +1,4 @@
 testnet-token
 config*.ini
 config*.yml
+dynamic_config*.yml
