@@ -14,7 +14,7 @@ Node:
 
 Rate:
   base_currency:
-    icd:
+    reserve:
       type: generic
       symbol: USD
       api_url: http://35.222.158.149:8080
