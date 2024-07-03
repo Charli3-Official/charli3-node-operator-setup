@@ -1,5 +1,5 @@
 Updater:
-  update_inter: 120
+  update_inter: 150
   verbosity: INFO
   percent_resolution: 10000  
 

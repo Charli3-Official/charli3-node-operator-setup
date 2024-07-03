@@ -16,9 +16,6 @@ Node:
 
 ChainQuery:
   network: TESTNET
-  # blockfrost:
-  #   base_url: https://cardano-preprod.blockfrost.io/api
-  #   project_id: "project_id"
   ogmios:
     ws_url: # ws url for ogmios
     kupo_url: # kupo url
