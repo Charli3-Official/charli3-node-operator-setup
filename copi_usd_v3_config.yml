@@ -1,60 +1,77 @@
-include: dynamic_config.yml
+include: dynamic_config.yml  
 
 Node:
-  mnemonic: <%= @mnemonic_usdm_usd %>
-  oracle_curr: 9792697c10d71f6455e3b75e6cf1ae0ce730dbf81d52f0184159ac41
-  oracle_address: addr1wyxq728k9pka686lzfkdyv60marz94swec9ef9mkxfqhyfqezqyjz
+  mnemonic: <%= @mnemonic_copi_usd %>
+  oracle_curr: de5f7f6063cf4fb3bbe8bbf8ad7da5bbb254dd3b35cb219a62a7a079
+  oracle_address: addr1wxqrs0gcxfhgvrlnczqrhnpyzhw4pvnqwc06wg39nc77qwshf0unp
   c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
   c3_token_name: CHARLI3
+  reference_script_input: f008baa35d776d956cfb5692ef24f459ef6e2abee212e6ee54076115bb83ade4#0
   c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
   c3_oracle_nft_name: OracleFeed
   c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
   node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
+
 Rate:
-  # Ensure the symbols are used correctly (e.g., ADA-SHEN instead of SHEN-ADA)
-  general_base_symbol: USDM-ADA
-  general_quote_symbol: ADA-USD
+  general_base_symbol: COPI-USD
+  general_quote_symbol: ADA-USD 
   base_currency:
-    muesliswap:
-      type: muesliswap
-      symbol: USDM/ADA
-      currency_symbol: c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad
-      token_name: "0014df105553444d"
+    xt:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=COPI_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    gate:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/copi_usdt
+      json_path: ["last"]
+      key: {}
+    bitrue:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=copiusdt
+      json_path: ["price"]
+      key: {}
+    mexc:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://www.mexc.com
+      path: /open/api/v2/market/ticker?symbol=COPI_USDT
+      json_path: ["data",0,"last"]
+      key: {}
+    minswap:
+      type: minswap
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: Cornucopias [via ChainPort.io]
+      token_b_decimal: 6
+      pool_id: 7925263b1aff069a191db67d5ac185c029f7f43e084a4ef6e5fa2848a56e2aa6
+      get_second_pool_price: false
       quote_currency: true
       rate_calculation_method: multiply
-    # vyfi:
-    #   type: vyfi
-    #   pool_tokens: ADA-0014df105553444d
-    #   pool_address: addr1z8m3eddhuq33pnnp3ystxv0dhq7fshcnht2a35594rc8ppdksyd8pn7amnr48geat0yft0uezfunealzy4ghl0cayp4sgsrtsk
-    #   minting_a_token_policy:
-    #   minting_b_token_policy: c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad
-    #   get_second_pool_price: false
-    #   quote_currency: true
-    #   rate_calculation_method: multiply
-    # minswap:
-    #   type: minswap
-    #   token_a_name: ADA
-    #   token_a_decimal: 6
-    #   token_b_name: 0014df105553444d
-    #   token_b_decimal: 6
-    #   pool_id: 116df62938bc100b55c0e72b57a48dced2f928635ad66660bc165a8f40f8e735
-    #   get_second_pool_price: false
-    #   quote_currency: true
-    #   rate_calculation_method: multiply
     wingriders:
       type: wingriders
-      symbol: USDM
-      currency_symbol: c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad
-      token_name: "0014df105553444d"
+      symbol: COPI
+      currency_symbol: b6a7467ea1deb012808ef4e87b5ff371e85f7142d7b356a40d9b42a0
+      token_name: 436f726e75636f70696173205b76696120436861696e506f72742e696f5d
       quote_currency: true
       rate_calculation_method: multiply
-    sundaeswap:
-      type: sundaeswap
-      symbol: usdm
-      pool_ident: 6105
+    vyfi:
+      type: vyfi
+      pool_tokens: ADA-Cornucopias [via ChainPort.io]
+      pool_address: addr1zyzryy5c7l0cyrt0w4g0tua9uk4zlsds5ertx50kvvpcdpx08470jem2z3k5yap4fddtxvykxxv2tmr83x06vklv5vys3rxv2e
+      minting_a_token_policy: null
+      minting_b_token_policy: b6a7467ea1deb012808ef4e87b5ff371e85f7142d7b356a40d9b42a0
+      get_second_pool_price: false
       quote_currency: true
       rate_calculation_method: multiply
+
   quote_currency:
     binance_usdt:
       type: binance
@@ -138,3 +155,4 @@ Rate:
       api_url: https://www.okx.com
       path: /api/v5/market/ticker?instId=ADA-USDC
       json_path: ["data",0,"last"]
+      key: {}
