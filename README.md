@@ -75,19 +75,50 @@ Before you begin, ensure that you meet the following prerequisites:
    - Blockchain configuration (network, addresses, etc.)
 
 6. **Configuration File Setup**
-   Set up the configuration YAML file(s) with the following details:
-   - The mnemonic (24 words)
-   - Ogmios URL (e.g., `http://cardano-infra-server-ip:1337`)
-   - Kupo URL (e.g., `http://cardano-infra-server-ip:1442`)
-   - Blockfrost project ID (optional, if needed for additional blockchain data)
+   You only need to configure one file: `dynamic_config.yml`. The rest of the datasources and oracle settings are pre-configured for your convenience. In the `dynamic_config.yml` file, set up the following details:
 
-   Example configuration snippet:
    ```yaml
-   mnemonic: "word1 word2 ... word24"
-   ogmios_url: "http://cardano-infra-server-ip:1337"
-   kupo_url: "http://cardano-infra-server-ip:1442"
-   blockfrost_project_id: "optional_project_id"
+   updater:
+     update_inter: 150
+     verbosity: INFO
+     percent_resolution: 10000
+
+   database:
+     url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+
+   chainQuery:
+     network: MAINNET
+     ogmios:
+       ws_url: ws://10.128.0.3:1337
+     kupo_url: http://10.128.0.3:1442
+
+   mnemonic_ada_charli3:
+   mnemonic_ada_euro:
+   mnemonic_ada_chf:
+   mnemonic_ada_usd:
+   mnemonic_book_usd:
+   mnemonic_djed_usd:
+   mnemonic_iusd_usd:
+   mnemonic_mehen_usd:
+   mnemonic_newm_usd:
+   mnemonic_rmkr_ada:
+   mnemonic_shen_usd:
+   mnemonic_copi_usd:
+   mnemonic_usda_usd:
+   mnemonic_btc_ada:
    ```
+
+   In this file:
+   - Update the `ws_url` under `ogmios` and `kupo_url` to point to your Cardano Infrastructure Server.
+   - Provide the mnemonic (24 words) for each feed you are approved to operate. Leave the fields blank for feeds you're not operating.
+
+   Example:
+   ```yaml
+   mnemonic_ada_usd: word1 word2 word3 ... word24
+   mnemonic_btc_ada: word1 word2 word3 ... word24
+   ```
+
+   Ensure you keep your mnemonics secure and never share them with anyone.
 
 7. **Running Your Node**
    Ensure your node wallet is funded with sufficient ADA for operations (recommended minimum: 50 ADA). Start your node:
