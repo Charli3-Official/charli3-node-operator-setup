@@ -1,0 +1,164 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_wmt_usd %>
+  oracle_curr: fb74c4135df679e5449a41fe82fc9ca5df3ffca14a028838d3e7d6be
+  oracle_address: addr1w892zehx8w9gas7pz2sgwtszvp2ea47u9759vm73pxl5w0sl64an6
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 840e988d0ecc24f74e959f8efbace5361f7b65f54ebfba3cb4d7c6916b7ae03d#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
+
+Rate:
+  general_base_symbol: WMT-USD
+  general_quote_symbol: ADA-USD 
+  base_currency:
+    gate:
+      type: generic
+      symbol: WMT-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/wmt_usdt
+      json_path: ["last"]
+      key: {}
+    bitrue:
+      type: generic
+      symbol: WMT-USDT
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=wmtusdt
+      json_path: ["price"]
+      key: {}
+    huobi:
+      type: generic
+      symbol: WMTUSDT
+      api_url: https://api.huobi.pro
+      path: /market/trade?symbol=wmtusdt
+      json_path: ["tick","data",0,"price"]
+      key: {}
+    minswap:
+      type: minswap
+      token_a_name: ADA
+      token_a_decimal: 6
+      token_b_name: worldmobiletoken
+      token_b_decimal: 6
+      pool_id: df88a770e300f248b776231b96da4525ce0f54bc457310efe27a03f2c14bb18f
+      get_second_pool_price: false
+      quote_currency: true
+      rate_calculation_method: multiply
+    wingriders:
+      type: wingriders
+      symbol: WMT
+      currency_symbol: 1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e
+      token_name: 776f726c646d6f62696c65746f6b656e
+      quote_currency: true
+      rate_calculation_method: multiply
+    vyfi:
+      type: vyfi
+      pool_tokens: ADA-worldmobiletoken
+      pool_address: addr1z9vgl40qezca5s8ajz6wnpuwevt98l3jqx2ce5nlu8h8nnw60wckas4haxwwclas0g39cc8cvt2r8yalrfa9e8vxx92qsss9sx
+      minting_a_token_policy: null
+      minting_b_token_policy: 1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e
+      get_second_pool_price: false
+      quote_currency: true
+      rate_calculation_method: multiply
+    kucoin:
+      type: generic
+      symbol: WMT-USD
+      api_url: https://api.kucoin.com
+      path: /api/v1/prices?currencies=WMT
+      json_path: ["data","WMT"]
+      key: {}
+    mexc:
+      type: generic
+      symbol: WMT-USDT
+      api_url: https://www.mexc.com
+      path: /open/api/v2/market/ticker?symbol=WMT_USDT
+      json_path: ["data",0,"last"]
+      key: {}
+
+  quote_currency:
+    binance_usdt:
+      type: binance
+      symbol: ADAUSDT
+    xt:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=ada_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    gate:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/ada_usdt
+      json_path: ["last"]
+      key: {}
+    crypto:
+      type: generic
+      symbol: ADA-USDT
+      api_url: https://api.crypto.com
+      path: /v2/public/get-ticker?instrument_name=ADA_USDT
+      json_path: ["result","data",0,"a"]
+      key: {}
+    huobi:
+      type: generic
+      symbol: ADAUSDT
+      api_url: https://api.huobi.pro
+      path: /market/trade?symbol=adausdt
+      json_path: ["tick","data",0,"price"]
+      key: {}
+    coinbase:
+      type: generic
+      symbol: ADA-USD
+      api_url: https://api.exchange.coinbase.com
+      path: /products/ADA-USD/ticker/
+      json_path: ["price"]
+      key: {}
+    kraken:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.kraken.com
+      path: /0/public/Ticker?pair=ADAUSD
+      json_path: ["result","ADAUSD","o"]
+      key: {}
+    btse:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.btse.com
+      path: /spot/api/v3.2/price?symbol=ADA-USD
+      json_path: [0,"lastPrice"]
+      key: {}
+    bitfinex:
+      type: generic
+      symbol: ADAUSD
+      api_url: https://api.bitfinex.com
+      path: /v2/ticker/tADAUSD
+      json_path: [6]
+      key: {}
+    binance_busd:
+      type: binance
+      symbol: ADABUSD
+    bitget:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://api.bitget.com
+      path: /api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL
+      json_path: ["data","close"]
+      key: {}
+    kucoin:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://api.kucoin.com
+      path: /api/v1/market/orderbook/level1?symbol=ADA-USDC
+      json_path: ["data","price"]
+      key: {}
+    okx:
+      type: generic
+      symbol: ADA-USDC
+      api_url: https://www.okx.com
+      path: /api/v5/market/ticker?instId=ADA-USDC
+      json_path: ["data",0,"last"]
+      key: {}
