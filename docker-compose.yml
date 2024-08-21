@@ -175,6 +175,18 @@ services:
         max-file: "10"
         max-size: "50m"
 
+  charli3-snek-usd-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    volumes:
+      - "./snek_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
 
 
 volumes:
