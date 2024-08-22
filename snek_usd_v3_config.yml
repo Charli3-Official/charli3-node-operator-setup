@@ -62,11 +62,27 @@ Rate:
       token_a_name: ADA
       token_a_decimal: 6
       token_b_name: SNEK
-      token_b_decimal: 6
+      token_b_decimal: 0
       pool_id: 63f2cbfa5bf8b68828839a2575c8c70f14a32f50ebbfa7c654043269793be896
       get_second_pool_price: false
       quote_currency: true
       rate_calculation_method: multiply
+    # wingriders:
+    #   type: wingriders
+    #   symbol: SNEK
+    #   currency_symbol: 279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f
+    #   token_name: 534e454b
+    #   quote_currency: true
+    #   rate_calculation_method: multiply
+    # vyfi:
+    #   type: vyfi
+    #   pool_tokens: ADA-SNEK
+    #   pool_address: addr1zy3jcyykdnjd3enu96hp0w6hct85s499w5y6w5hmk0qzh50qy02w7ayk0lyyrf080l5zusdpkg8se9x7fcke6vaz42lqwjjflq
+    #   minting_a_token_policy: null
+    #   minting_b_token_policy: 279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f
+    #   get_second_pool_price: false
+    #   quote_currency: true
+    #   rate_calculation_method: multiply
   quote_currency:
     binance_usdt:
       type: binance
