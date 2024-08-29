@@ -1,12 +1,15 @@
 Updater:
   update_inter: 150
   verbosity: INFO
-  percent_resolution: 10000  
+  percent_resolution: 10000
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
 
 Node:
   mnemonic: # 24 word mnemonic
   oracle_curr: 1116903479e7320b8e4592207aaebf627898267fcd80e2d9646cbf07
-  oracle_addr: addr_test1wzn5ee2qaqvly3hx7e0nk3vhm240n5muq3plhjcnvx9ppjgf62u6a
+  oracle_address: addr_test1wzn5ee2qaqvly3hx7e0nk3vhm240n5muq3plhjcnvx9ppjgf62u6a
   c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
   c3_token_name: PaymentToken
   # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
@@ -21,6 +24,7 @@ ChainQuery:
     kupo_url: # kupo url
 
 Rate:
+  general_base_symbol: ADA-USD
   base_currency:
     binance_usdt:
       type: binance
@@ -44,14 +48,14 @@ Rate:
       symbol: ADA-USDT
       api_url: https://api.crypto.com
       path: /v2/public/get-ticker?instrument_name=ADA_USDT
-      json_path: ["result","data",0,"a"]
+      json_path: ["result", "data", 0, "a"]
       key: {}
     huobi:
       type: generic
       symbol: ADAUSDT
       api_url: https://api.huobi.pro
       path: /market/trade?symbol=adausdt
-      json_path: ["tick","data",0,"price"]
+      json_path: ["tick", "data", 0, "price"]
       key: {}
     coinbase:
       type: generic
@@ -65,14 +69,14 @@ Rate:
       symbol: ADAUSD
       api_url: https://api.kraken.com
       path: /0/public/Ticker?pair=ADAUSD
-      json_path: ["result","ADAUSD","o"]
+      json_path: ["result", "ADAUSD", "o"]
       key: {}
     btse:
       type: generic
       symbol: ADAUSD
       api_url: https://api.btse.com
       path: /spot/api/v3.2/price?symbol=ADA-USD
-      json_path: [0,"lastPrice"]
+      json_path: [0, "lastPrice"]
       key: {}
     bitfinex:
       type: generic
@@ -96,19 +100,19 @@ Rate:
       symbol: ADA-USDC
       api_url: https://api.bitget.com
       path: /api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL
-      json_path: ["data","close"]
+      json_path: ["data", "close"]
       key: {}
     kucoin:
       type: generic
       symbol: ADA-USDC
       api_url: https://api.kucoin.com
       path: /api/v1/market/orderbook/level1?symbol=ADA-USDC
-      json_path: ["data","price"]
+      json_path: ["data", "price"]
       key: {}
     okx:
       type: generic
       symbol: ADA-USDC
       api_url: https://www.okx.com
       path: /api/v5/market/ticker?instId=ADA-USDC
-      json_path: ["data",0,"last"]
+      json_path: ["data", 0, "last"]
       key: {}

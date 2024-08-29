@@ -3,10 +3,13 @@ Updater:
   verbosity: INFO
   percent_resolution: 10000  
 
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+
 Node:
   mnemonic: # 24 word mnemonic
   oracle_curr: 857c5f709b3951b50e1a235cb0b1c551ae3aea8d95c9311b9571782a
-  oracle_addr: addr_test1wpu0ypdndqfc88j8ax9pq3aymj0d3aar6f37kxda2wnjdkgmtjks8
+  oracle_address: addr_test1wpu0ypdndqfc88j8ax9pq3aymj0d3aar6f37kxda2wnjdkgmtjks8
   c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
   c3_token_name: PaymentToken
   c3_oracle_nft_name: "OracleFeed"
@@ -20,6 +23,7 @@ ChainQuery:
     kupo_url: # kupo url
 
 Rate:
+  general_base_symbol: USDM-RESERVES
   base_currency:
     icd:
       type: generic

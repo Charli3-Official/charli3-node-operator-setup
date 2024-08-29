@@ -3,10 +3,13 @@ Updater:
   verbosity: INFO
   percent_resolution: 10000  
 
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+
 Node:
   mnemonic: # 24 word mnemonic
   oracle_curr: 2b556df9f37c04ef31b8f7f581c4e48174adcf5041e8e52497d81556
-  oracle_addr: addr_test1wqlcn3pks3xdptxjw9pqrqtcx6ev694sstsruw3phd57ttg0lh0zq
+  oracle_address: addr_test1wqlcn3pks3xdptxjw9pqrqtcx6ev694sstsruw3phd57ttg0lh0zq
   c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
   c3_token_name: PaymentToken
   # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
@@ -21,10 +24,12 @@ ChainQuery:
     kupo_url: # kupo url
 
 Rate:
+  general_base_symbol: SHEN-USD
   base_currency:
     sundaeswap:
       type: sundaeswap
       symbol: Shen
+      pool_ident: c704
       quote_currency: True
     # minswap:
     #   type: minswap
