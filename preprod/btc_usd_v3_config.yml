@@ -1,0 +1,104 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_btc_usd %>
+  oracle_curr: 5cf48c225e057f8da0787eae1e2bc62a1cf1d2ee34c7e2a9498b19b5
+  oracle_address: addr_test1wp8rka0tdzpfe20x8d2p7dj97790arg3nye20gjjs9c7wjgdefdv0
+  c3_token_hash: "436941ead56c61dbf9b92b5f566f7d5b9cac08f8c957f28f0bd60d4b"
+  c3_token_name: "PAYMENTTOKEN"
+  # reference_script_input: efd8a48f69e5270cb73b438067e1b566d39758329a45e5d6d36755f2c7326184#0
+  c3_oracle_nft_hash: 5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
+  
+Rate:
+  general_base_symbol: BTC-USD
+  base_currency:
+    xt:
+      type: generic
+      symbol: BTC-USDT
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=BTC_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    gate:
+      type: generic
+      symbol: BTC-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/BTC_usdt
+      json_path: ["last"]
+      key: {}
+    crypto:
+      type: generic
+      symbol: BTC-USDT
+      api_url: https://api.crypto.com
+      path: /v2/public/get-ticker?instrument_name=BTC_USDT
+      json_path: ["result","data",0,"a"]
+      key: {}
+    huobi:
+      type: generic
+      symbol: BTCUSDT
+      api_url: https://api.huobi.pro
+      path: /market/trade?symbol=btcusdt
+      json_path: ["tick","data",0,"price"]
+      key: {}
+    coinbase:
+      type: generic
+      symbol: BTC-USD
+      api_url: https://api.exchange.coinbase.com
+      path: /products/BTC-USD/ticker/
+      json_path: ["price"]
+      key: {}
+    kraken:
+      type: generic
+      symbol: BTCUSD
+      api_url: https://api.kraken.com
+      path: /0/public/Ticker?pair=BTCUSD
+      json_path: ["result","XXBTZUSD","o"]
+      key: {}
+    btse:
+      type: generic
+      symbol: BTCUSD
+      api_url: https://api.btse.com
+      path: /spot/api/v3.2/price?symbol=BTC-USD
+      json_path: [0,"lastPrice"]
+      key: {}
+    bitfinex:
+      type: generic
+      symbol: tBTCUSD
+      api_url: https://api.bitfinex.com
+      path: /v2/ticker/tBTCUSD
+      json_path: [6]
+      key: {}
+    binance_busd:
+      type: binance
+      symbol: BTCUSDT
+    bitrue:
+      type: generic
+      symbol: BTCBUSD
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=btcusdt
+      json_path: ["price"]
+      key: {}
+    bitget:
+      type: generic
+      symbol: BTC-USDC
+      api_url: https://api.bitget.com
+      path: /api/spot/v1/market/ticker?symbol=BTCUSDC_SPBL
+      json_path: ["data","close"]
+      key: {}
+    kucoin:
+      type: generic
+      symbol: BTC-USDC
+      api_url: https://api.kucoin.com
+      path: /api/v1/market/orderbook/level1?symbol=BTC-USDC
+      json_path: ["data","price"]
+      key: {}
+    okx:
+      type: generic
+      symbol: BTC-USDC
+      api_url: https://www.okx.com
+      path: /api/v5/market/ticker?instId=BTC-USDC
+      json_path: ["data",0,"last"]
+      key: {}

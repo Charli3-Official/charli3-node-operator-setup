@@ -1,23 +1,13 @@
-Updater:
-  update_inter: 150
-  verbosity: INFO
-  percent_resolution: 10000  
-
-database:
-  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+include: dynamic_config.yml
 
 Node:
-  mnemonic: # 24 word mnemonic
+  mnemonic: <%= @mnemonic_ada_charli3 %>
   oracle_curr: 5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4
   oracle_address: addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj
   c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
   c3_token_name: PaymentToken
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
-ChainQuery:
-  network: TESTNET
-  ogmios:
-    ws_url: # ws url for ogmios
-    kupo_url: # kupo url
 
 Rate:
   general_base_symbol: ADA-CHARLI3

@@ -1,0 +1,46 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_copi_usd %>
+  oracle_curr: 657991fcca11e70169ba87ef626d2a3a5bd35faa32a5946b8689a342
+  oracle_address: addr_test1wqd2qdzhh3x280q6erdksyku6k3eknrqsmrpkjnn6hsvjegk9gghn
+  c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
+  c3_token_name: PaymentToken
+  reference_script_input: abde3298b8e3effe6ef34b3e8d5d717d3553f3adeaab8b41777b25946196ea26#0
+  c3_oracle_nft_hash: 5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
+  
+Rate:
+  general_base_symbol: COPI-USD
+  base_currency:
+    xt:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=COPI_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    gate:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://api.gateio.ws
+      path: /api2/1/ticker/copi_usdt
+      json_path: ["last"]
+      key: {}
+    bitrue:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://openapi.bitrue.com
+      path: /api/v1/ticker/price?symbol=copiusdt
+      json_path: ["price"]
+      key: {}
+    mexc:
+      type: generic
+      symbol: COPI-USDT
+      api_url: https://www.mexc.com
+      path: /open/api/v2/market/ticker?symbol=COPI_USDT
+      json_path: ["data",0,"last"]
+      key: {}
+    
