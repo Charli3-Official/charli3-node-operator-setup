@@ -18,9 +18,23 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d node-operator-backend -U charli3"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  charli3-migrations:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
+    volumes:
+      - "./dynamic_config.yml:/app/config.yml"
+    command: ["python3", "migrations.py"]
+    depends_on:
+      charli3-node-operator-db:
+        condition: service_healthy
 
   charli3-ada-charli3-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./ada_charli3_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -31,9 +45,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-ada-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./ada_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -44,9 +61,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-book-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./book_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -57,9 +77,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-nmkr-ada-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./nmkr_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -70,9 +93,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-ada-euro-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./ada_euro_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -83,9 +109,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-ada-chf-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./ada_chf_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -96,9 +125,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-mehen-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./mehen_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -109,9 +141,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-newm-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./newm_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -122,22 +157,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
-
-  charli3-usdm-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
-    volumes:
-      - "./usdm_usd_v3_config.yml:/app/config.yml"
-      - "./dynamic_config.yml:/app/dynamic_config.yml"
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        compress: "true"
-        max-file: "10"
-        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-copi-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./copi_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -148,9 +173,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-btc-ada-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./btc_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -161,9 +189,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-wmt-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./wmt_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -174,9 +205,12 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
   charli3-snek-usd-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.8.2
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
     volumes:
       - "./snek_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -187,6 +221,9 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
 
 
 volumes:
