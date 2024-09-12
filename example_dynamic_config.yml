@@ -4,7 +4,7 @@ Updater:
   percent_resolution: 10000  
 
 database:
-  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+  url: "postgresql+asyncpg://charli3:charli3@pgbouncer:6432/node-operator-backend?prepared_statement_cache_size=0"
 
 ChainQuery:
   network: MAINNET
