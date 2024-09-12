@@ -1,0 +1,127 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_eth_usd %>
+  oracle_curr: 99026f7cacf8d88c5c771a095ac3db8d35d6918b4b95faa2e8bcdb61
+  oracle_address: addr1w9ur05c222km7a3jq2fca4g9s4dk4svgzye92qts9r596vq6tnexk
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
+
+Rate:
+  general_base_symbol: ETH-USD
+  base_currency:
+    binance_usdt:
+      type: binance
+      symbol: ETHUSDT
+    coinbase:
+      type: generic
+      symbol: ETH-USD
+      api_url: https://api.pro.coinbase.com
+      path: /products/ETH-USD/ticker
+      json_path: ["price"]
+      key: {}
+    okx:
+      type: generic
+      symbol: ETH-USDT
+      api_url: https://www.okx.com
+      path: /api/v5/market/ticker?instId=ETH-USDT
+      json_path: ["data", 0, "last"]
+      key: {}
+    kraken:
+      type: generic
+      symbol: ETHUSD
+      api_url: https://api.kraken.com
+      path: /0/public/Ticker?pair=ETHUSD
+      json_path: ["result", "XETHZUSD", "c", 0]
+      key: {}
+    gate:
+      type: generic
+      symbol: ETH-USDT
+      api_url: https://api.gateio.ws
+      path: /api/v4/spot/tickers?currency_pair=ETH_USDT
+      json_path: [0, "last"]
+      key: {}
+    htx:
+      type: generic
+      symbol: ETHUSDT
+      api_url: https://api.huobi.pro
+      path: /market/detail/merged?symbol=ethusdt
+      json_path: ["tick", "close"]
+      key: {}
+    kucoin:
+      type: generic
+      symbol: ETH-USDT
+      api_url: https://api.kucoin.com
+      path: /api/v1/market/orderbook/level1?symbol=ETH-USDT
+      json_path: ["data", "price"]
+      key: {}
+    mexc:
+      type: generic
+      symbol: ETHUSDT
+      api_url: https://api.mexc.com
+      path: /api/v3/ticker/price?symbol=ETHUSDT
+      json_path: ["price"]
+      key: {}
+    bitget:
+      type: generic
+      symbol: ETHUSDT
+      api_url: https://api.bitget.com
+      path: /api/spot/v1/market/ticker?symbol=ETHUSDT_SPBL
+      json_path: ["data", "close"]
+      key: {}
+    crypto:
+      type: generic
+      symbol: ETH-USDT
+      api_url: https://api.crypto.com
+      path: /v2/public/get-ticker?instrument_name=ETH_USDT
+      json_path: ["result", "data", 0, "a"]
+      key: {}
+    bitstamp:
+      type: generic
+      symbol: ETHUSD
+      api_url: https://www.bitstamp.net
+      path: /api/v2/ticker/ethusd/
+      json_path: ["last"]
+      key: {}
+    bitmart:
+      type: generic
+      symbol: ETH_USDT
+      api_url: https://api-cloud.bitmart.com
+      path: /spot/v1/ticker?symbol=ETH_USDT
+      json_path: ["data", "tickers", 0, "last_price"]
+      key: {}
+    lbank:
+      type: generic
+      symbol: eth_usdt
+      api_url: https://api.lbkex.com
+      path: /v2/ticker.do?symbol=eth_usdt
+      json_path: ["data", 0, "ticker", "latest"]
+      key: {}
+    gemini:
+      type: generic
+      symbol: ETHUSD
+      api_url: https://api.gemini.com
+      path: /v1/pubticker/ethusd
+      json_path: ["last"]
+      key: {}
+    binance_us:
+      type: generic
+      symbol: ETHUSDT
+      api_url: https://api.binance.us
+      path: /api/v3/ticker/price?symbol=ETHUSDT
+      json_path: ["price"]
+      key: {}
+    xt:
+      type: generic
+      symbol: eth_usdt
+      api_url: https://sapi.xt.com
+      path: /v4/public/ticker?symbol=eth_usdt
+      json_path: ["result", 0, "c"]
+      key: {}
+    binance_usdc:
+      type: binance
+      symbol: ETHUSDC

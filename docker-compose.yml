@@ -23,6 +23,35 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G  
+  
+  pgbouncer:
+    image: bitnami/pgbouncer:1.23.1
+    environment:
+      - POSTGRESQL_HOST=charli3-node-operator-db
+      - POSTGRESQL_PORT=5432
+      - POSTGRESQL_DATABASE=node-operator-backend
+      - POSTGRESQL_USERNAME=charli3
+      - POSTGRESQL_PASSWORD=charli3
+      - PGBOUNCER_PORT=6432
+      - PGBOUNCER_POOL_MODE=transaction
+      - PGBOUNCER_MAX_CLIENT_CONN=1000
+      - PGBOUNCER_DEFAULT_POOL_SIZE=20
+      - PGBOUNCER_DATABASE=*
+    ports:
+      - "6432:6432"
+    depends_on:
+      - charli3-node-operator-db
+    restart: always
+    healthcheck:
+      test: 'env PGPASSWORD="$$POSTGRESQL_PASSWORD" psql -p 6432 -U "$$POSTGRESQL_USERNAME" pgbouncer -b -c "SHOW USERS" >/dev/null'
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   charli3-migrations:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -31,6 +60,8 @@ services:
     command: ["python3", "migrations.py"]
     depends_on:
       charli3-node-operator-db:
+        condition: service_healthy
+      pgbouncer:
         condition: service_healthy
 
   charli3-ada-charli3-v3:
@@ -48,6 +79,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-ada-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -64,6 +100,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-book-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -80,6 +121,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-nmkr-ada-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -96,6 +142,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-ada-euro-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -112,22 +163,32 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
-  charli3-ada-chf-v3:
-    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
-    volumes:
-      - "./ada_chf_v3_config.yml:/app/config.yml"
-      - "./dynamic_config.yml:/app/dynamic_config.yml"
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        compress: "true"
-        max-file: "10"
-        max-size: "50m"
-    depends_on:
-      charli3-migrations:
-        condition: service_completed_successfully
+  # charli3-ada-chf-v3:
+  #   image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
+  #   volumes:
+  #     - "./ada_chf_v3_config.yml:/app/config.yml"
+  #     - "./dynamic_config.yml:/app/dynamic_config.yml"
+  #   restart: always
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       compress: "true"
+  #       max-file: "10"
+  #       max-size: "50m"
+  #   depends_on:
+  #     charli3-migrations:
+  #       condition: service_completed_successfully
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.5'
+  #         memory: 256M
 
   charli3-mehen-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -144,6 +205,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-newm-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -160,6 +226,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-copi-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -176,6 +247,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-btc-ada-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -192,6 +268,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-wmt-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -208,6 +289,11 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   charli3-snek-usd-v3:
     image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
@@ -224,6 +310,32 @@ services:
     depends_on:
       charli3-migrations:
         condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  charli3-eth-usd-v3:
+    image: us-central1-docker.pkg.dev/charli3-mainnet/node-operator-backend/node-operator-backend:v2.9.1
+    volumes:
+      - "./eth_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
 
 volumes:
