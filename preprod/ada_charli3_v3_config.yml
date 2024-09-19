@@ -11,24 +11,17 @@ Node:
 
 Rate:
   general_base_symbol: ADA-CHARLI3
+
   base_currency:
-    inverseRate:
-      type: inverserate
-      symbol: ADA/CHARLI3
-      quote_currency: True
-      rate_calculation_method: "divide"
-  quote_currency:
-    sundaeswap:
-      type: sundaeswap
-      symbol: charli3
-      pool_ident: f302
-    muesliswap:
-      type: muesliswap
-      symbol: CHARLI3/ADA
-      currency_symbol: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
-      token_name: 434841524c4933
-    wingriders:
-      type: wingriders
-      symbol: CHARLI3/ADA
-      currency_symbol: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
-      token_name: 434841524c4933
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: lovelace
+        asset_b: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a434841524c4933
+        sources:
+        - sundaeswap
+        - minswapv2
+        - wingriders
+        - muesliswap
+        - vyfi
+        # - minswap
+        # - sundaeswapv3

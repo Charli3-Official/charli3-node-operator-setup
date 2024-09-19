@@ -15,76 +15,60 @@ Node:
 
 Rate:
   general_base_symbol: SHEN-USD
+  general_quote_symbol: ADA-USD
+
   base_currency:
-    sundaeswap:
-      type: sundaeswap
-      symbol: Shen
-      pool_ident: c704
-      quote_currency: True
-    # minswap:
-    #   type: minswap
-    #   symbol: SHEN/ADA
-    #   currency_symbol: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61
-    #   token_name: 5368656e4d6963726f555344
-    #   quote_currency: True
-    # muesliswap:
-    #   type: muesliswap
-    #   symbol: SHEN/ADA
-    #   currency_symbol: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61
-    #   token_name: 5368656e4d6963726f555344
-    #   quote_currency: True
-    wingriders:
-      type: wingriders
-      symbol: SHEN/ADA
-      currency_symbol: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61
-      token_name: 5368656e4d6963726f555344
-      quote_currency: True
-    coingecko:
-      type: coingecko
-      tid: shen
-      vs_currency: usd
-    coinmarketcap:
-      type: generic
-      symbol: SHEN-USD
-      api_url: https://pro-api.coinmarketcap.com
-      path: /v2/cryptocurrency/quotes/latest?symbol=shen
-      json_path: ["data","SHEN",0,"quote","USD","price"]
-      key: {
-        "X-CMC_PRO_API_KEY": "cc8dd3a2-67f9-4bc6-8378-c0f9823109e0"
-      }
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd615368656e4d6963726f555344
+        asset_b: lovelace
+        quote_required: true
+        sources:
+          - sundaeswapv3
+          - spectrum
+          - minswapv2
+          - wingriders
+          - vyfi
+          - muesliswap
+
+    api_sources:
+      - adapter: generic-api
+        asset_a: SHEN
+        asset_b: USD
+        quote_required: false
+        sources:
+          - name: coingecko
+            api_url: "https://api.coingecko.com/api/v3/simple/price?ids=shen&vs_currencies=usd"
+            json_path: ["shen", "usd"]
+            headers: {}
+
   quote_currency:
-    binance-us:
-      type: generic
-      symbol: ADAUSDT
-      api_url: https://api.binance.us
-      path: /api/v3/avgPrice?symbol=ADAUSDT
-      json_path: ["price"]
-      key: {}
-    kucoin:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://api.kucoin.com
-      path: /api/v1/prices?currencies=ADA
-      json_path: ["data","ADA"]
-      key: {}
-    kraken:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.kraken.com
-      path: /0/public/Ticker?pair=ADAUSD
-      json_path: ["result","ADAUSD","o"]
-      key: {}
-    bitrue:
-      type: generic
-      symbol: ADAUSDT
-      api_url: https://openapi.bitrue.com
-      path: /api/v1/ticker/price?symbol=adausdt
-      json_path: ["price"]
-      key: {}
-    coinbase:
-      type: generic
-      symbol: ADA-USD
-      api_url: https://api.exchange.coinbase.com
-      path: /products/ADA-USD/ticker/
-      json_path: ["price"]
-      key: {}
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        sources:
+          - name: binance-us
+            api_url: "https://api.binance.us/api/v3/avgPrice?symbol=ADAUSDT"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/prices?currencies=ADA"
+            json_path: ["data", "ADA"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: bitrue
+            api_url: "https://openapi.bitrue.com/api/v1/ticker/price?symbol=adausdt"
+            json_path: ["price"]
+            headers: {}
+
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}

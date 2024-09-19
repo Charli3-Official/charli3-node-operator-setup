@@ -14,91 +14,69 @@ Node:
   
 Rate:
   general_base_symbol: BTC-USD
+
   base_currency:
-    xt:
-      type: generic
-      symbol: BTC-USDT
-      api_url: https://sapi.xt.com
-      path: /v4/public/ticker?symbol=BTC_usdt
-      json_path: ["result", 0, "c"]
-      key: {}
-    gate:
-      type: generic
-      symbol: BTC-USDT
-      api_url: https://api.gateio.ws
-      path: /api2/1/ticker/BTC_usdt
-      json_path: ["last"]
-      key: {}
-    crypto:
-      type: generic
-      symbol: BTC-USDT
-      api_url: https://api.crypto.com
-      path: /v2/public/get-ticker?instrument_name=BTC_USDT
-      json_path: ["result","data",0,"a"]
-      key: {}
-    huobi:
-      type: generic
-      symbol: BTCUSDT
-      api_url: https://api.huobi.pro
-      path: /market/trade?symbol=btcusdt
-      json_path: ["tick","data",0,"price"]
-      key: {}
-    coinbase:
-      type: generic
-      symbol: BTC-USD
-      api_url: https://api.exchange.coinbase.com
-      path: /products/BTC-USD/ticker/
-      json_path: ["price"]
-      key: {}
-    kraken:
-      type: generic
-      symbol: BTCUSD
-      api_url: https://api.kraken.com
-      path: /0/public/Ticker?pair=BTCUSD
-      json_path: ["result","XXBTZUSD","o"]
-      key: {}
-    btse:
-      type: generic
-      symbol: BTCUSD
-      api_url: https://api.btse.com
-      path: /spot/api/v3.2/price?symbol=BTC-USD
-      json_path: [0,"lastPrice"]
-      key: {}
-    bitfinex:
-      type: generic
-      symbol: tBTCUSD
-      api_url: https://api.bitfinex.com
-      path: /v2/ticker/tBTCUSD
-      json_path: [6]
-      key: {}
-    binance_busd:
-      type: binance
-      symbol: BTCUSDT
-    bitrue:
-      type: generic
-      symbol: BTCBUSD
-      api_url: https://openapi.bitrue.com
-      path: /api/v1/ticker/price?symbol=btcusdt
-      json_path: ["price"]
-      key: {}
-    bitget:
-      type: generic
-      symbol: BTC-USDC
-      api_url: https://api.bitget.com
-      path: /api/spot/v1/market/ticker?symbol=BTCUSDC_SPBL
-      json_path: ["data","close"]
-      key: {}
-    kucoin:
-      type: generic
-      symbol: BTC-USDC
-      api_url: https://api.kucoin.com
-      path: /api/v1/market/orderbook/level1?symbol=BTC-USDC
-      json_path: ["data","price"]
-      key: {}
-    okx:
-      type: generic
-      symbol: BTC-USDC
-      api_url: https://www.okx.com
-      path: /api/v5/market/ticker?instId=BTC-USDC
-      json_path: ["data",0,"last"]
-      key: {}
+    api_sources:
+      - adapter: generic-api
+        asset_a: BTC
+        asset_b: USD
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=BTC_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/BTC_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=BTC_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=btcusdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/BTC-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=BTCUSD"
+            json_path: ["result", "XXBTZUSD", "o"]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=BTC-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tBTCUSD"
+            json_path: [6]
+            headers: {}
+
+          - name: bitrue
+            api_url: "https://openapi.bitrue.com/api/v1/ticker/price?symbol=btcusdt"
+            json_path: ["price"]
+            headers: {}
+
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=BTCUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=BTC-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
