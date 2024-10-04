@@ -13,157 +13,123 @@ Node:
   node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
 
 Rate:
-  general_base_symbol: SNEK-USD
-  general_quote_symbol: ADA-USD 
+  general_base_symbol: SNEK-ADA
+  general_quote_symbol: ADA-USD
+
   base_currency:
-    gate:
-      type: generic
-      symbol: SNEK-USDT
-      api_url: https://api.gateio.ws
-      path: /api2/1/ticker/snek_usdt
-      json_path: ["last"]
-      key: {}
-    mexc:
-      type: generic
-      symbol: SNEK-USDT
-      api_url: https://www.mexc.com
-      path: /open/api/v2/market/ticker?symbol=SNEK_USDT
-      json_path: ["data",0,"last"]
-      key: {}
-    bitget:
-      type: generic
-      symbol: SNEK-USDT
-      api_url: https://api.bitget.com
-      path: /api/v2/spot/market/tickers?symbol=SNEKUSDT
-      json_path: ["data",0,"lastPr"]
-    bitrue:
-      type: generic
-      symbol: SNEK-USDT
-      api_url: https://openapi.bitrue.com
-      path: /api/v1/ticker/price?symbol=snekusdt
-      json_path: ["price"]
-      key: {}
-    bitmart:
-      type: generic
-      symbol: SNEK-USDT
-      api_url: https://api-cloud.bitmart.com
-      path: /spot/quotation/v3/ticker?symbol=SNEK_USDT
-      json_path: ["data","last"]
-      key: {}
-    coinex:
-      type: generic
-      symbol: SNEK-USD
-      api_url: https://api.coinex.com
-      path: /v2/spot/ticker?market=SNEKUSDT
-      json_path: ["data",0,"last"]
-      key: {}
-    minswap:
-      type: minswap
-      token_a_name: ADA
-      token_a_decimal: 6
-      token_b_name: SNEK
-      token_b_decimal: 0
-      pool_id: 63f2cbfa5bf8b68828839a2575c8c70f14a32f50ebbfa7c654043269793be896
-      get_second_pool_price: false
-      quote_currency: true
-      rate_calculation_method: multiply
-    # wingriders:
-    #   type: wingriders
-    #   symbol: SNEK
-    #   currency_symbol: 279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f
-    #   token_name: 534e454b
-    #   quote_currency: true
-    #   rate_calculation_method: multiply
-    # vyfi:
-    #   type: vyfi
-    #   pool_tokens: ADA-SNEK
-    #   pool_address: addr1zy3jcyykdnjd3enu96hp0w6hct85s499w5y6w5hmk0qzh50qy02w7ayk0lyyrf080l5zusdpkg8se9x7fcke6vaz42lqwjjflq
-    #   minting_a_token_policy: null
-    #   minting_b_token_policy: 279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f
-    #   get_second_pool_price: false
-    #   quote_currency: true
-    #   rate_calculation_method: multiply
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b
+        asset_b: lovelace
+        quote_required: true
+        quote_calc_method: multiply
+        sources:
+          - minswapv2
+          - sundaeswap
+          - sundaeswapv3
+          - muesliswap
+        
+    api_sources:
+      - adapter: generic-api
+        asset_a: SNEK
+        asset_b: USD
+        quote_required: false
+        sources:
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/snek_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: mexc
+            api_url: "https://www.mexc.com/open/api/v2/market/ticker?symbol=SNEK_USDT"
+            json_path: ["data", 0, "last"]
+            headers: {}
+
+          - name: bitget
+            api_url: "https://api.bitget.com/api/v2/spot/market/tickers?symbol=SNEKUSDT"
+            json_path: ["data", 0, "lastPr"]
+            headers: {}
+
+          - name: bitrue
+            api_url: "https://openapi.bitrue.com/api/v1/ticker/price?symbol=snekusdt"
+            json_path: ["price"]
+            headers: {}
+
+          - name: bitmart
+            api_url: "https://api-cloud.bitmart.com/spot/quotation/v3/ticker?symbol=SNEK_USDT"
+            json_path: ["data", "last"]
+            headers: {}
+
+          - name: coinex
+            api_url: "https://api.coinex.com/v2/spot/ticker?market=SNEKUSDT"
+            json_path: ["data", 0, "last"]
+            headers: {}
+
   quote_currency:
-    binance_usdt:
-      type: binance
-      symbol: ADAUSDT
-    xt:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://sapi.xt.com
-      path: /v4/public/ticker?symbol=ada_usdt
-      json_path: ["result", 0, "c"]
-      key: {}
-    gate:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://api.gateio.ws
-      path: /api2/1/ticker/ada_usdt
-      json_path: ["last"]
-      key: {}
-    crypto:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://api.crypto.com
-      path: /v2/public/get-ticker?instrument_name=ADA_USDT
-      json_path: ["result","data",0,"a"]
-      key: {}
-    huobi:
-      type: generic
-      symbol: ADAUSDT
-      api_url: https://api.huobi.pro
-      path: /market/trade?symbol=adausdt
-      json_path: ["tick","data",0,"price"]
-      key: {}
-    coinbase:
-      type: generic
-      symbol: ADA-USD
-      api_url: https://api.exchange.coinbase.com
-      path: /products/ADA-USD/ticker/
-      json_path: ["price"]
-      key: {}
-    kraken:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.kraken.com
-      path: /0/public/Ticker?pair=ADAUSD
-      json_path: ["result","ADAUSD","o"]
-      key: {}
-    btse:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.btse.com
-      path: /spot/api/v3.2/price?symbol=ADA-USD
-      json_path: [0,"lastPrice"]
-      key: {}
-    bitfinex:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.bitfinex.com
-      path: /v2/ticker/tADAUSD
-      json_path: [6]
-      key: {}
-    binance_busd:
-      type: binance
-      symbol: ADABUSD
-    bitget:
-      type: generic
-      symbol: ADA-USDC
-      api_url: https://api.bitget.com
-      path: /api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL
-      json_path: ["data","close"]
-      key: {}
-    kucoin:
-      type: generic
-      symbol: ADA-USDC
-      api_url: https://api.kucoin.com
-      path: /api/v1/market/orderbook/level1?symbol=ADA-USDC
-      json_path: ["data","price"]
-      key: {}
-    okx:
-      type: generic
-      symbol: ADA-USDC
-      api_url: https://www.okx.com
-      path: /api/v5/market/ticker?instId=ADA-USDC
-      json_path: ["data",0,"last"]
-      key: {}
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDT
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=ada_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/ada_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=ADA_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+                       
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        sources:
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=ADA-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tADAUSD"
+            json_path: [6]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDC
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}

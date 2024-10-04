@@ -14,38 +14,19 @@ Node:
 
 
 Rate:
+  general_base_symbol: NMKR-ADA
+  
   base_currency:
-    muesliswap:
-      type: muesliswap
-      symbol: NMKR/ADA
-      currency_symbol: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489
-      token_name: 4e4d4b52
-      quote_currency: false
-    vyfi:
-      type: vyfi
-      pool_tokens: ADA-NMKR
-      pool_address: addr1zyl65mfwq2u9duf0h7paqsgg2zqesadtge944ldf6n082pg9gczwem2qwpjcgh3dr055wfyznfc209ke40hayakfmavsxzkxnc
-      minting_a_token_policy: null
-      minting_b_token_policy: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489
-      get_second_pool_price: false
-      quote_currency: false
-    minswap:
-      type: minswap
-      token_a_name: ADA
-      token_a_decimal: 6
-      token_b_name: NMKR
-      token_b_decimal: 6
-      pool_id: 5aebbb6030552e9313c5b8cd2c3eb710efd519fdf6c1b8861a64791e4cb7390c
-      get_second_pool_price: false
-      quote_currency: false
-    sundaeswap:
-      type: sundaeswap
-      symbol: NMKR
-      pool_ident: 0e03
-      quote_currency: false
-    wingriders:
-      type: wingriders
-      symbol: NMKR
-      currency_symbol: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489
-      token_name: 4e4d4b52
-      quote_currency: false
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc928434894e4d4b52
+        asset_b: lovelace
+        quote_required: false
+        sources:
+          - minswapv2
+          - vyfi
+          - wingriders
+          - spectrum
+          - sundaeswap
+          - sundaeswapv3
+          - muesliswap

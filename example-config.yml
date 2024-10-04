@@ -33,35 +33,16 @@ ChainQuery:
     kupo_url: http://localhost:1442
 
 Rate:
+  general_base_symbol: ADA-CHARLI3
+
   base_currency:
-    binance:
-      type: binance
-      symbol: ADAUSDT
-    kucoin:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://api.kucoin.com
-      path: /api/v1/prices?currencies=ADA
-      json_path: ["data","ADA"]
-      key: {}
-    kraken:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.kraken.com
-      path: /0/public/Ticker?pair=ADAUSD
-      json_path: ["result","ADAUSD","o"]
-      key: {}
-    bitrue:
-      type: generic
-      symbol: ADAUSDT
-      api_url: https://openapi.bitrue.com
-      path: /api/v1/ticker/price?symbol=adausdt
-      json_path: ["price"]
-      key: {}
-    coinbase:
-      type: generic
-      symbol: ADA-USD
-      api_url: https://api.exchange.coinbase.com
-      path: /products/ADA-USD/ticker/
-      json_path: ["price"]
-      key: {}
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: lovelace
+        asset_b: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a434841524c4933
+        sources:
+        - sundaeswap
+        - minswapv2
+        - wingriders
+        - muesliswap
+        - vyfi
