@@ -8,6 +8,7 @@ database:
 
 ChainQuery:
   network: MAINNET
+  use_slot_time: false
   ogmios:
     ws_url: ws://10.128.0.3:1337
     kupo_url: http://10.128.0.3:1442

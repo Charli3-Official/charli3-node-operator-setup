@@ -14,156 +14,116 @@ Node:
 
 
 Rate:
+  general_base_symbol: ADA-USD
+  general_quote_symbol: EUR-USD
+
   base_currency:
-    binance_usdt:
-      type: binance
-      symbol: ADAUSDT
-      quote_currency: true
-      rate_calculation_method: divide
-    xt:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://sapi.xt.com
-      path: /v4/public/ticker?symbol=ada_usdt
-      json_path: ["result", 0, "c"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    gate:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://api.gateio.ws
-      path: /api2/1/ticker/ada_usdt
-      json_path: ["last"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    crypto:
-      type: generic
-      symbol: ADA-USDT
-      api_url: https://api.crypto.com
-      path: /v2/public/get-ticker?instrument_name=ADA_USDT
-      json_path: ["result","data",0,"a"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    huobi:
-      type: generic
-      symbol: ADAUSDT
-      api_url: https://api.huobi.pro
-      path: /market/trade?symbol=adausdt
-      json_path: ["tick","data",0,"price"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    coinbase:
-      type: generic
-      symbol: ADA-USD
-      api_url: https://api.exchange.coinbase.com
-      path: /products/ADA-USD/ticker/
-      json_path: ["price"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    kraken:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.kraken.com
-      path: /0/public/Ticker?pair=ADAUSD
-      json_path: ["result","ADAUSD","o"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    btse:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.btse.com
-      path: /spot/api/v3.2/price?symbol=ADA-USD
-      json_path: [0,"lastPrice"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    bitfinex:
-      type: generic
-      symbol: ADAUSD
-      api_url: https://api.bitfinex.com
-      path: /v2/ticker/tADAUSD
-      json_path: [6]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    binance_busd:
-      type: binance
-      symbol: ADABUSD
-      quote_currency: true
-      rate_calculation_method: divide
-    bitget:
-      type: generic
-      symbol: ADA-USDC
-      api_url: https://api.bitget.com
-      path: /api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL
-      json_path: ["data","close"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    kucoin:
-      type: generic
-      symbol: ADA-USDC
-      api_url: https://api.kucoin.com
-      path: /api/v1/market/orderbook/level1?symbol=ADA-USDC
-      json_path: ["data","price"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
-    okx:
-      type: generic
-      symbol: ADA-USDC
-      api_url: https://www.okx.com
-      path: /api/v5/market/ticker?instId=ADA-USDC
-      json_path: ["data",0,"last"]
-      key: {}
-      quote_currency: true
-      rate_calculation_method: divide
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDT
+        quote_required: true
+        quote_calc_method: divide
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=ada_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/ada_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=ADA_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+                       
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        quote_required: true
+        quote_calc_method: divide
+        sources:
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=ADA-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tADAUSD"
+            json_path: [6]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDC
+        quote_required: true
+        quote_calc_method: divide
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
+
   quote_currency:
-    kraken:
-      type: generic
-      symbol: EUR-USD
-      api_url: 'https://api.kraken.com'
-      path: /0/public/Ticker?pair=EURUSD
-      json_path: ["result","ZEURZUSD","o"]
-      key: {}
-    blockchain:
-      type: generic
-      symbol: EUR-USD
-      api_url: 'https://api.blockchain.com'
-      path: /v3/exchange/tickers/EUR-USD
-      json_path: ["last_trade_price"]
-      key: {}
-    huobi:
-      type: generic
-      symbol: EUR-USDt
-      api_url: 'https://api.huobi.pro'
-      path: /market/trade?symbol=eurtusdt
-      json_path: ["tick","data",0,"price"]
-      key: {}
-    bitget:
-      type: generic
-      symbol: EURT-USDt
-      api_url: 'https://api.bitget.com'
-      path: /api/spot/v1/market/ticker?symbol=EURTUSDt_SPBL
-      json_path: ["data","close"]
-      key: {}
-    xt:
-      type: generic
-      symbol: EURT-USDT
-      api_url: 'https://sapi.xt.com'
-      path: /v4/public/ticker?symbol=EURT_usdt
-      json_path: ["result", 0, "c"]
-      key: {}
-    coindex:
-      type: generic
-      symbol: EURT-USD
-      api_url: 'https://coincodex.com'
-      path: /api/coincodex/get_coin/eurt
-      json_path: ["last_price_usd"]
-      key: {}
+    api_sources:
+      - adapter: generic-api
+        asset_a: EUR
+        asset_b: USD
+        sources:
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=EURUSD"
+            json_path: ["result", "ZEURZUSD", "o"]
+            headers: {}
+
+          - name: blockchain
+            api_url: "https://api.blockchain.com/v3/exchange/tickers/EUR-USD"
+            json_path: ["last_trade_price"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=eurtusdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=EURTUSDt_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=EURT_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: coindex
+            api_url: "https://coincodex.com/api/coincodex/get_coin/eurt"
+            json_path: ["last_price_usd"]
+            headers: {}
