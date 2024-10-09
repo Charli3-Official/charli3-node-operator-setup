@@ -23,7 +23,7 @@ services:
       retries: 5
 
   charli3-migrations:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./dynamic_config.yml:/app/config.yml"
     command: ["python3", "migrations.py"]
@@ -32,7 +32,7 @@ services:
         condition: service_healthy   
 
   charli3-ada-charli3-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./ada_charli3_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -48,7 +48,7 @@ services:
         condition: service_completed_successfully
 
   charli3-ada-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./ada_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -64,7 +64,7 @@ services:
         condition: service_completed_successfully
 
   charli3-shen-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./shen_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -80,7 +80,7 @@ services:
         condition: service_completed_successfully
 
   charli3-usdm-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./usdm_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -96,7 +96,7 @@ services:
         condition: service_completed_successfully
 
   charli3-btc-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./btc_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -112,7 +112,7 @@ services:
         condition: service_completed_successfully
 
   charli3-copi-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0-beta
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
     volumes:
       - "./copi_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
