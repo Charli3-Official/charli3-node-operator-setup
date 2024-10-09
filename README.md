@@ -1,170 +1,143 @@
 # Charli3 Node Operator Backend Setup
 
-## Getting Started
+Welcome to the Charli3 Node Operator Backend setup guide. This README provides a comprehensive overview of the setup process and points you to detailed documentation for each aspect of running a Charli3 node.
 
-Welcome to the comprehensive setup guide for your Charli3 node operator backend. This guide will walk you through the steps required to get your node up and running, ensuring you meet all necessary requirements and configurations.
+## Table of Contents
 
-### System Architecture Overview
+- [Charli3 Node Operator Backend Setup](#charli3-node-operator-backend-setup)
+  - [Table of Contents](#table-of-contents)
+  - [🚀 Quick Start](#-quick-start)
+  - [📚 Essential Documentation](#-essential-documentation)
+  - [🔬 Advanced Topics](#-advanced-topics)
+  - [🛠 Troubleshooting](#-troubleshooting)
+  - [System Architecture Overview](#system-architecture-overview)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Configuration Files](#configuration-files)
+  - [Available Oracle Feeds](#available-oracle-feeds)
+  - [Key Features](#key-features)
+    - [Alert System](#alert-system)
+    - [Reward Collection](#reward-collection)
+  - [Security Considerations](#security-considerations)
+  - [🚀 Performance Optimization](#-performance-optimization)
+  - [🔄 Upgrading Your Node](#-upgrading-your-node)
+  - [Support and Community](#support-and-community)
 
-For optimal performance, security, and maintainability, we recommend a two-server setup:
+## 🚀 Quick Start
 
-1. **Cardano Infrastructure Server:** Dedicated to running the Cardano node, Ogmios, and Kupo.
-2. **Charli3 Node Server:** Hosting the Charli3 node operator backend.
+1. 📋 Check the [Prerequisites](docs/Prerequisites.md)
+2. 🛠 Follow the [Installation Guide](docs/installation-guide.md)
+3. ⚙️ Configure your node using the [Configuration Guide](docs/configuration.md)
+4. 🖥️ Start your node following the [Running Your Node](docs/running-your-node.md) guide
 
-This separation allows for better resource allocation, easier maintenance, and enhanced security. However, if resources are limited, running all components on a single, sufficiently powerful server is possible.
+## 📚 Essential Documentation
 
-### Prerequisites
+For production usage, we recommend reviewing these documents:
 
-Before you begin, ensure that you meet the following prerequisites:
+- [Security Best Practices](docs/security-best-practices.md)
+- [SLA Requirements](docs/sla-requirements.md)
+- [Alerts Configuration](docs/alerts-configuration.md)
+- [Reward Collection Guide](docs/reward-collection.md)
 
-- **Server Requirements:**
-  For the recommended two-server setup:
-  
-  Cardano Infrastructure Server:
-  - A modern, multi-core CPU (recommended: 8 cores or more)
-  - At least 32GB of RAM
-  - A minimum of 500GB of available storage (SSD required)
-  - A stable and reliable internet connection with at least 100 Mbps up/down
+## 🔬 Advanced Topics
 
-  Charli3 Node Server:
-  - A modern, multi-core CPU (recommended: 2 cores or more)
-  - At least 8GB of RAM
-  - A minimum of 50GB of available storage (SSD required)
-  - A stable and reliable internet connection with at least 10 Mbps up/down
+For more in-depth information:
 
-  If using a single server for all components, combine the above requirements.
+- [Oracle Feeds Configuration](docs/oracle-feeds-configuration.md)
+- [Architecture Overview](docs/architecture-overview.md)
+- [System Requirements](docs/system-requirements.md)
+- [Accessing Node Operator Backend Docker Image](docs/accessing-docker-image.md)
+- [FAQ](docs/charli3_node_operator_faq.md)
 
-- **Software Requirements:**
-  - Docker (version 20.10 or later) and Docker Compose (version 1.29 or later) installed on both servers
-  - Git (version 2.25 or later) for cloning the repository
+## 🛠 Troubleshooting
 
-- **Network Requirements:**
-  - Open outbound ports for connecting to the Cardano network (default: 3001)
-  - Open inbound ports on the Cardano Infrastructure Server for Ogmios (1337) and Kupo (1442)
-  - Ensure the Charli3 Node Server can access the Cardano Infrastructure Server
+Encountering issues? Check our [Troubleshooting Guide](docs/troubleshooting.md).
 
-### Installation & Setup Steps
+## System Architecture Overview
 
-1. **Set Up Cardano Infrastructure Server**
-   To set up your Cardano node, Ogmios, and Kupo on the dedicated server, use the official Charli3 Cardano node setup repository:
+The recommended setup involves two servers:
+1. **Cardano Infrastructure Server**: Runs the Cardano node, Ogmios, and Kupo.
+2. **Charli3 Node Server**: Hosts the Charli3 node operator backend.
 
-   ```bash
-   git clone https://github.com/Charli3-Official/cardano-node-setup.git
-   cd cardano-node-setup
-   ```
+For a detailed explanation of the system architecture, refer to the [Architecture Overview](docs/architecture-overview.md) document.
 
-   Follow the instructions in the repository's README to set up and configure the Cardano node, Ogmios, and Kupo. This setup ensures compatibility with the Charli3 node operator backend.
+## Prerequisites
 
-2. **Clone the Charli3 Node Operator Setup Repository on Charli3 Node Server**
-   On your Charli3 Node Server, clone the setup repository:
-   ```bash
-   git clone https://github.com/Charli3-Official/charli3-node-operator-setup.git
-   cd charli3-node-operator-setup
-   ```
+Before setting up your Charli3 node, ensure you meet all system requirements. These include hardware specifications, software prerequisites, and network requirements.
 
-3. **Access to Node-Operator-Backend Docker Image**
-   To access the node-operator-backend Docker image, follow the instructions in the [Accessing Node Operator Backend Docker Image Guide](https://github.com/Charli3-Official/charli3-node-operator-setup/blob/main/docs/Accessing_Node_Operator_Backend_Docker_Image_Guide.md). This guide provides detailed steps on how to obtain and authenticate with the required Docker image.
+For a comprehensive list of prerequisites, see the [Prerequisites](docs/Prerequisites.md) document.
 
-4. **Mnemonic and Public Key Hash Setup**
-   Prepare your node's mnemonic (24 words needed) and its public key hash. Coordinate with the Charli3 team to have your node's public key hash configured with the oracle feed you intend to operate. Store your mnemonic securely and never share it.
+## Installation
 
-5. **Oracle Feed Configuration Files**
-   Review and adjust the configuration YAML files for the oracle feeds you intend to run. Pay special attention to:
-   - Data source endpoints and API keys
-   - Oracle feed parameters (update frequency, deviation threshold, etc.)
-   - Blockchain configuration (network, addresses, etc.)
+Follow these steps to set up your Charli3 node:
 
-6. **Configuration File Setup**
-   You only need to configure one file: `dynamic_config.yml`. The rest of the datasources and oracle settings are pre-configured for your convenience. In the `dynamic_config.yml` file, set up the following details:
+1. Set up the Cardano Infrastructure Server
+2. Clone the Charli3 Node Operator Setup Repository
+3. Access the Node-Operator-Backend Docker Image
+4. Prepare your node wallet
 
-   ```yaml
-   updater:
-     update_inter: 150
-     verbosity: INFO
-     percent_resolution: 10000
+For detailed installation steps, refer to the [Installation Guide](docs/installation-guide.md).
 
-   database:
-     url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+## Configuration Files
 
-   chainQuery:
-     network: MAINNET
-     ogmios:
-       ws_url: ws://10.128.0.3:1337
-     kupo_url: http://10.128.0.3:1442
+Charli3 nodes use two types of configuration files:
+- `config.yml`: Feed-specific configuration files
+- `dynamic_config.yml`: Shared configuration file for parameters common across all feeds
 
-   mnemonic_ada_charli3:
-   mnemonic_ada_euro:
-   mnemonic_ada_chf:
-   mnemonic_ada_usd:
-   mnemonic_book_usd:
-   mnemonic_djed_usd:
-   mnemonic_iusd_usd:
-   mnemonic_mehen_usd:
-   mnemonic_newm_usd:
-   mnemonic_rmkr_ada:
-   mnemonic_shen_usd:
-   mnemonic_copi_usd:
-   mnemonic_usda_usd:
-   mnemonic_btc_ada:
-   ```
+For more information on configuring your node, see the [Configuration Guide](docs/configuration.md).
 
-   In this file:
-   - Update the `ws_url` under `ogmios` and `kupo_url` to point to your Cardano Infrastructure Server.
-   - Provide the mnemonic (24 words) for each feed you are approved to operate. Leave the fields blank for feeds you're not operating.
+## Available Oracle Feeds
 
-   Example:
-   ```yaml
-   mnemonic_ada_usd: word1 word2 word3 ... word24
-   mnemonic_btc_ada: word1 word2 word3 ... word24
-   ```
+Charli3 supports various oracle feeds, including:
+- ADA/USD
+- BTC/ADA
+- ETH/USD
+- And more
 
-   Ensure you keep your mnemonics secure and never share them with anyone.
+For a complete list and configuration details, refer to the [Oracle Feeds Configuration](docs/oracle-feeds-configuration.md) guide.
 
-7. **Running Your Node**
-   Ensure your node wallet is funded with sufficient ADA for operations (recommended minimum: 50 ADA). Start your node:
-   ```bash
-   docker-compose up -d
-   ```
+## Key Features
 
-## Post-Setup
+### Alert System
+Charli3 nodes include a configurable alert system to notify operators of important events or issues. For setup and configuration details, see the [Alerts Configuration Guide](docs/alerts-configuration.md).
 
-After starting your node:
+### Reward Collection
+Automatic reward collection allows node operators to efficiently manage their earned C3 tokens. Learn more in the [Reward Collection Guide](docs/reward-collection.md).
 
-1. **Monitor Logs:** Check the logs for any errors or warnings:
-   ```bash
-   docker-compose logs -f
-   ```
-
-2. **Verify Connectivity:** Ensure your Charli3 node is properly connected to Ogmios and Kupo on the Cardano Infrastructure Server.
-
-3. **Check Oracle Feed Status:** Verify that your node is successfully fetching data and submitting oracle updates.
-
-4. **Set Up Monitoring:** Configure monitoring and alerting for both servers to ensure high availability.
-
-5. **Regular Updates:** Keep an eye out for updates from the Charli3 team and apply them promptly to both the Cardano Infrastructure Server and the Charli3 Node Server.
-
-## Troubleshooting
-
-If you encounter issues:
-
-1. **Check Logs:** Review Docker logs on both servers for specific error messages.
-2. **Verify Configurations:** Double-check all configuration files, especially the URLs for Ogmios and Kupo.
-3. **Network Issues:** Ensure all required ports are open and services are accessible between servers.
-4. **Resource Constraints:** Monitor system resources on both servers.
-5. **Version Compatibility:** Verify that all software versions are compatible and up-to-date.
-
-If issues persist, consult the official Charli3 documentation or reach out to the support team.
 
 ## Security Considerations
 
-1. **Mnemonic Protection:** Store your mnemonic securely, preferably in an offline, encrypted format.
-2. **Server Hardening:** Follow best practices for server security on both servers, including regular updates and firewall configuration.
-3. **Access Control:** Limit access to both servers and use strong authentication methods.
-4. **Monitoring:** Set up intrusion detection and monitoring systems on both servers.
-5. **Network Security:** Ensure secure communication between your Charli3 Node Server and Cardano Infrastructure Server.
+Security is crucial when operating a Charli3 node. Key security measures include:
 
-## Conclusion
+- Protecting your mnemonic phrase
+- Implementing server hardening techniques
+- Using strong authentication methods
 
-Congratulations on setting up your Charli3 node operator backend! Your contribution to the Charli3 ecosystem and decentralized oracle networks on Cardano is valuable.
+For detailed security best practices, refer to the [Security Best Practices](docs/security-best-practices.md) guide.
 
-Stay informed about the latest developments and best practices in node operation to ensure the continued success and security of your Charli3 node.
+## 🚀 Performance Optimization
+
+To ensure your node operates at peak efficiency:
+
+- Optimize your server's resources
+- Fine-tune your database configuration
+- Consider using pgbouncer for improved database performance
+
+For more details, consult the [System Requirements](docs/system-requirements.md) and [Configuration Guide](docs/configuration.md).
+
+## 🔄 Upgrading Your Node
+
+Stay up-to-date with the latest features and improvements:
+
+1. Regularly check for updates from the Charli3 team
+2. Follow the upgrade instructions provided with each release
+3. Always back up your configuration before upgrading
+
+## Support and Community
+
+If you need assistance or want to connect with other Charli3 node operators:
+
+- Join our [Discord community](#) (link to be provided)
+- Visit the [Charli3 website](https://charli3.io) for more resources
+
+Thank you for contributing to the Charli3 network! Your participation helps build a more decentralized and robust oracle system on Cardano.

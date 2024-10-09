@@ -8,10 +8,32 @@ database:
 
 ChainQuery:
   network: MAINNET
-  use_slot_time: false
   ogmios:
     ws_url: ws://10.128.0.3:1337
     kupo_url: http://10.128.0.3:1442
+
+Alerts:
+  cooldown: 1800 # 30 minutes (Optional)
+  thresholds: # (Optional)
+    c3_token_balance: 1000 # in ADA format
+    ada_balance: 500 # in ADA
+    timeout_variance: 105 # 5% variance
+    minimum_data_sources: 3
+  notifications: # at least one notification is required
+    - type: slack
+      config:
+        webhook_url: "{tokenA}/{tokenB}/{tokenC}" # from https://hooks.slack.com/services/{tokenA}/{tokenB}/{tokenC}
+    - type: discord
+      config:
+        webhook_url: "{WebhookID}/{WebhookToken}" # from Discord webhook https://discordapp.com/api/webhooks/{WebhookID}/{WebhookToken}
+    - type: telegram
+      config: # need to create a bot and get the token from BotFather
+        bot_token: your_bot_token
+        chat_id: your_chat_id
+
+RewardCollection:
+  destination_address: "addr1q8ae7dedj82gjxdkcv25j5r9c22cvy3d4wx9k9u3r6ytf0s4j3cxv6gst3wqgf8psznsps5a7505prqyeygm2wh8lppqgvqd5p" # Address to collect rewards
+  trigger_amount: 1000 # 1000 C3 tokens
 
 mnemonic_ada_charli3: 
 mnemonic_ada_euro: 

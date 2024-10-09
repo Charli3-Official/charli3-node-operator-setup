@@ -39,5 +39,41 @@ docker ps
 docker logs [CONTAINER_ID]
 ```
 
+## Using the Image with Docker Compose
+
+In most cases, you'll be using this image as part of a Docker Compose setup. In your `docker-compose.yml` file, reference the image like this:
+
+```yaml
+services:
+  charli3-node-operator:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:latest
+    # ... other configuration options ...
+```
+
+## Updating the Image
+
+To update to the latest version of the image:
+
+1. Pull the latest image:
+   ```bash
+   docker pull ghcr.io/charli3-official/charli3-node-operator-backend:latest
+   ```
+
+2. If using Docker Compose, rebuild and restart your services:
+   ```bash
+   docker-compose down
+   docker-compose up -d
+   ```
+
+## Troubleshooting
+
+If you encounter issues pulling or running the image:
+
+1. Ensure you have a stable internet connection.
+2. Verify that you have sufficient permissions to pull Docker images.
+3. Check that your Docker installation is up to date.
+4. If the issue persists, contact the Charli3 support team for assistance.
+
+Remember to always refer to the official Charli3 documentation for the most up-to-date information on image versions and configuration requirements.
 
 This guide provides a straightforward approach to accessing and managing the `node-operator-backend` Docker image from GitHub Container Registry using Docker commands, ensuring a quick and easy setup for all users.

@@ -1,56 +1,84 @@
-# Charli3 Node Operator Backend Setup - Prerequisites Document
+# Prerequisites for Charli3 Node Operator Backend
 
-## Introduction
-This document details the prerequisites required for setting up the Charli3 node operator backend, ensuring all necessary conditions and configurations are in place before initiating the setup process.
+Before setting up your Charli3 node operator backend, ensure that you have met all the following prerequisites. This will ensure a smooth setup process and optimal operation of your node.
 
-## Server Requirements
-Ensure your server meets the following specifications before beginning the setup:
-- **CPU:** Modern, multi-core CPU to efficiently handle computational tasks.
-- **Memory:** Minimum of 8GB RAM to support smooth operation.
-- **Storage:** At least 50GB of available storage, with SSD recommended for faster data access.
-- **Internet Connection:** A stable and reliable internet connection for consistent network connectivity.
+## 1. Hardware Requirements
 
-## Software Requirements
-Required software installations on your server include:
-- **Docker:** For managing and deploying containerized services.
-- **Docker Compose:** For running multi-container Docker applications.
-- **Git:** Necessary for cloning the repository from GitHub.
+### Cardano Infrastructure Server:
+- CPU: 4 cores or more
+- RAM: 32 GB or more
+- Storage: 500 GB SSD or more
+- Network: 100 Mbps up/down or faster, stable connection
 
-## Installation & Setup Steps
-1. **Clone the Repository:** Start by cloning the Charli3 node operator setup repository:
-   ```bash
-   git clone https://github.com/Charli3-Official/charli3-node-operator-setup.git
-   ```
-2. **Repository Access:** Ensure you have read access to the Charli3 node operator setup repository and read-only access to the artifact repository on GCP hosting the Docker image.
+### Charli3 Node Server:
+- CPU: 2 cores or more
+- RAM: 8 GB or more
+- Storage: 50 GB SSD or more
+- Network: 50 Mbps up/down or faster, stable connection
 
-## Cardano Node, Ogmios, and Kupo Requirements
-To successfully integrate and operate your node with the Cardano blockchain and oracle services, the following components are necessary:
-- **Cardano Node:** A fully synced Cardano node is required for direct interaction with the blockchain.
-- **Ogmios:** A Haskell implementation of the Ouroboros network protocol that provides a JSON-RPC interface over WebSocket. Required for real-time data exchange between your node and the Cardano blockchain.
-- **Kupo:** Necessary for handling encrypted data transmissions within the oracle network. Ensure it is correctly configured and integrated.
+For detailed information, refer to the [System Requirements](system-requirements.md) document.
 
-## Mnemonic and Public Key Hash Setup
-Securely prepare your node’s mnemonic (24 words) and public key hash. It’s critical to coordinate with the Charli3 team for proper configuration.
+## 2. Software Requirements
 
-## Configuration File Setup
-Configure the necessary YAML files with:
-- **Mnemonic:** Securely inputted.
-- **Ogmios URL:** Specified URL connection.
-- **Blockfrost Project ID:** If needed for blockchain interactions.
+- Operating System: Ubuntu 20.04 LTS or later (64-bit)
+- Docker: Version 20.10 or later
+- Docker Compose: Version 1.29 or later
+- Git: Version 2.25 or later
 
-## Running Your Node
-- **Startup Command:** Initiate your node with:
-  ```bash
-  docker-compose up -d
-  ```
-- **Service Management:** Adjust the `docker-compose.yml` file as necessary to manage service deployment.
+## 3. Network Requirements
 
-## Post-Setup
-- **Monitoring:** Continuously monitor logs and performance to ensure optimal operation.
-- **Updates:** Stay updated with information from the Charli3 team regarding node operation and maintenance.
+- Open outbound port 3001 for connecting to the Cardano network
+- For the two-server setup, open inbound ports on the Cardano Infrastructure Server:
+  - Port 1337 for Ogmios
+  - Port 1442 for Kupo
+- Ensure the Charli3 Node Server can access the Cardano Infrastructure Server
 
-## Troubleshooting
-Refer to the Charli3 documentation or contact support for issues related to configuration, network connectivity, or Docker-specific problems.
+## 4. Cardano Node Setup
+
+- A fully synced Cardano node
+- Ogmios installed and configured
+- Kupo installed and configured
+
+For detailed setup instructions, refer to the [Cardano Infrastructure Setup Guide](https://github.com/Charli3-Official/cardano-node-setup).
+
+## 5. Wallet Requirements
+
+- A Cardano wallet with sufficient ADA for operation (minimum recommended: 50 ADA)
+- The wallet's 24-word mnemonic phrase (keep this secure and never share it)
+
+## 6. Oracle Feed Approval
+
+- Approval from the Charli3 team to operate specific oracle feeds
+- Your node's public key hash registered with Charli3 for the approved feeds
+
+## 7. Knowledge Prerequisites
+
+- Basic understanding of Linux command line operations
+- Familiarity with Docker and container concepts
+- Basic knowledge of blockchain and oracle concepts
+
+## 8. Access Requirements
+
+- SSH access to your servers
+- GitHub account with access to the Charli3 repositories
+
+## 9. Time Commitment
+
+- Initial setup: 2-4 hours
+- Ongoing maintenance: 1-2 hours per week
+
+## 10. Backup and Recovery Plan
+
+- Strategy for backing up critical data and configuration files
+- Plan for quickly restoring service in case of hardware failure
 
 ## Conclusion
-Meeting these prerequisites and following the outlined steps will ensure your Charli3 node operator backend is operational, contributing effectively to the ecosystem. Visit the official Charli3 channels for updates and community engagement.
+
+Ensuring you meet all these prerequisites will set you up for success in operating your Charli3 node. If you're unsure about any of these requirements or need assistance, please reach out to the Charli3 support team before proceeding with the installation.
+
+Next Steps:
+- Review the [Installation Guide](installation-guide.md)
+- Familiarize yourself with the [Configuration Guide](configuration.md)
+- Understand the [Architecture Overview](architecture-overview.md)
+
+Remember, running a Charli3 node is a responsibility that contributes to the decentralization and reliability of the Charli3 oracle network. Your preparation and attention to detail will help ensure the integrity of the entire system.
