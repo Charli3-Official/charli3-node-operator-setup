@@ -1,0 +1,132 @@
+services:  
+  charli3-node-operator-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: charli3
+      POSTGRES_PASSWORD: charli3
+      POSTGRES_DB: node-operator-backend
+    volumes:
+      - charli3-node-operator-db:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - "5432:5432"
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d node-operator-backend -U charli3"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  charli3-migrations:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./dynamic_config.yml:/app/config.yml"
+    command: ["python3", "migrations.py"]
+    depends_on:
+      charli3-node-operator-db:
+        condition: service_healthy   
+
+  charli3-ada-charli3-v3:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./ada_charli3_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+
+  charli3-ada-usd-v3:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./ada_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+
+  charli3-shen-usd-v3:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./shen_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+
+  charli3-usdm-usd-v3:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./usdm_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+
+  charli3-btc-usd-v3:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./btc_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+
+  charli3-copi-usd-v3:
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.0.0
+    volumes:
+      - "./copi_usd_v3_config.yml:/app/config.yml"
+      - "./dynamic_config.yml:/app/dynamic_config.yml"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+    depends_on:
+      charli3-migrations:
+        condition: service_completed_successfully
+
+
+volumes:
+  charli3-node-operator-db:

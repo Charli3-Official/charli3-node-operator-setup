@@ -1,0 +1,54 @@
+Updater:
+  update_inter: 150
+  verbosity: INFO
+  percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+
+NodeSync:
+  api_url: "http://charli3-node-sync-api:3000"
+
+ChainQuery:
+  network: TESTNET
+  ogmios:
+    ws_url: ws://10.128.0.3:1337
+    kupo_url: http://10.128.0.3:1442
+
+  external: # Any one of the following can be used
+    ogmios:
+      ws_url: ws:// #MAINNET
+      kupo_url: http:// #MAINNET
+    blockfrost:
+      project_id: "mainnet....."
+
+Alerts:
+  cooldown: 1800 # 30 minutes (Optional)
+  thresholds: # (Optional)
+    c3_token_balance: 1000 # in ADA format
+    ada_balance: 500 # in ADA
+    timeout_variance: 105 # 5% variance
+    minimum_data_sources: 3 # minimum number of data sources
+  notifications: # at least one notification is required
+    - type: slack
+      config:
+        webhook_url: "{tokenA}/{tokenB}/{tokenC}" # from https://hooks.slack.com/services/{tokenA}/{tokenB}/{tokenC}
+    - type: discord
+      config:
+        webhook_url: "{WebhookID}/{WebhookToken}" # from Discord webhook https://discordapp.com/api/webhooks/{WebhookID}/{WebhookToken}
+    - type: telegram
+      config: # need to create a bot and get the token from BotFather
+        bot_token: your_bot_token
+        chat_id: your_chat_id
+
+RewardCollection:
+  destination_address: "addr_test1wqf99gagnjgfamek9v9vyrwulwh64xdnerq9xkvfhwyeu3qdufj2x" # Address to collect rewards
+  trigger_amount: 1000 # 1000 C3 tokens
+
+mnemonic_ada_charli3: 
+mnemonic_ada_usd: 
+mnemonic_usdm_reserves: 
+mnemonic_shen_usd: 
+mnemonic_usdm_usd:
+mnemonic_btc_usd:
+mnemonic_copi_usd:

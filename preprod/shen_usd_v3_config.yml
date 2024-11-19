@@ -1,0 +1,73 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_shen_usd %>
+  oracle_curr: 2b556df9f37c04ef31b8f7f581c4e48174adcf5041e8e52497d81556
+  oracle_address: addr_test1wqlcn3pks3xdptxjw9pqrqtcx6ev694sstsruw3phd57ttg0lh0zq
+  c3_token_hash: c6f192a236596e2bbaac5900d67e9700dec7c77d9da626c98e0ab2ac
+  c3_token_name: PaymentToken
+  # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_name: "OracleFeed"
+  c3_oracle_nft_hash: "5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4"
+  c3_oracle_rate_address: "addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj"
+
+
+Rate:
+  general_base_symbol: SHEN-USD
+  general_quote_symbol: ADA-USD
+
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd615368656e4d6963726f555344
+        asset_b: lovelace
+        quote_required: true
+        sources:
+          - sundaeswapv3
+          - spectrum
+          - minswapv2
+          - wingriders
+          - vyfi
+          - muesliswap
+
+    api_sources:
+      - adapter: generic-api
+        asset_a: SHEN
+        asset_b: USD
+        quote_required: false
+        sources:
+          - name: coingecko
+            api_url: "https://api.coingecko.com/api/v3/simple/price?ids=shen&vs_currencies=usd"
+            json_path: ["shen", "usd"]
+            headers: {}
+
+  quote_currency:
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        sources:
+          - name: binance-us
+            api_url: "https://api.binance.us/api/v3/avgPrice?symbol=ADAUSDT"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/prices?currencies=ADA"
+            json_path: ["data", "ADA"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: bitrue
+            api_url: "https://openapi.bitrue.com/api/v1/ticker/price?symbol=adausdt"
+            json_path: ["price"]
+            headers: {}
+
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}

@@ -1,0 +1,25 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_ada_charli3 %>
+  oracle_curr: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  oracle_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 97c0a07f9d2b732a26bcbc664c99a00120cf5382918972ab0d754fb910799e90#0
+
+
+Rate:
+  general_base_symbol: ADA-CHARLI3
+
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: lovelace
+        asset_b: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a434841524c4933
+        sources:
+        - sundaeswap
+        - minswapv2
+        - wingriders
+        - muesliswap
+        - vyfi

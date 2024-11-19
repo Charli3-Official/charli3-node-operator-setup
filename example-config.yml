@@ -1,0 +1,48 @@
+Updater:
+  update_inter: 150
+  verbosity: INFO
+  percent_resolution: 10000  
+
+database:
+  url: "postgresql+asyncpg://charli3:charli3@charli3-node-operator-db:5432/node-operator-backend"
+
+Node:
+  mnemonic: xxx xxx xxx
+  oracle_curr: c00c2ee78495d1cc21010b354c56975ca3f0202e2ea9e16ebab0acfa
+  node_nft: NodeFeed
+  aggstate_nft: AggState
+  oracle_nft: OracleFeed
+  reward_nft: Reward
+  oracle_address: addr_test1wr2x24tlcpr37sjrscaqsh6z4tue3k7zx8qt8n0kscen2jct0wkz7
+  c3_token_hash: 436941ead56c61dbf9b92b5f566f7d5b9cac08f8c957f28f0bd60d4b
+  c3_token_name: PAYMENTTOKEN
+  ## Optional parameters
+  reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_nft_hash: 5e4a2431a465a00dc5d8181aaff63959bb235d97013e7acb50b55bc4
+  c3_oracle_rate_address: addr_test1wr64gtafm8rpkndue4ck2nx95u4flhwf643l2qmg9emjajg2ww0nj
+
+ChainQuery:
+  network: TESTNET
+  ## Select either blockfrost or ogmios
+  # blockfrost:
+  #   base_url: https://cardano-preprod.blockfrost.io/api
+  #   project_id: put your project id here
+  ogmios:
+    ws_url: ws://localhost:1337
+    kupo_url: http://localhost:1442
+
+Rate:
+  general_base_symbol: ADA-CHARLI3
+
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: lovelace
+        asset_b: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a434841524c4933
+        sources:
+        - sundaeswap
+        - minswapv2
+        - wingriders
+        - muesliswap
+        - vyfi
