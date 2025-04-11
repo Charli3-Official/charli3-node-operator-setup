@@ -1,0 +1,29 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_usdm_ada %>
+  oracle_curr: 36f3dc3a2a904b2678f4ebbe82dadbef1ad4144b3921d793b12a7e2f
+  oracle_address: addr1w98dq70hqh8we52jgnck535n277ajkz7pg9cpk275lkyt9gjjc97g
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 87978e35a77f7dfe7bc98f9af5498360166176dbf102e625a9ee3c7a3d417658#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+  node_sync_api: https://devportal-backend-phsapb3mfq-uc.a.run.app
+
+Rate:
+  general_base_symbol: USDM-ADA
+
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad0014df105553444d
+        asset_b: lovelace
+        quote_required: false
+        sources:
+          - sundaeswapv3
+          - minswapv2
+          - wingriders
+          - muesliswap
+          - vyfi
