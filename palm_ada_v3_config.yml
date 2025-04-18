@@ -1,0 +1,25 @@
+include: dynamic_config.yml  
+
+Node:
+  mnemonic: <%= @mnemonic_palm_ada %>
+  oracle_curr: 5bcca0f463ca72853add36957e7c15dd14fd1f5786c6296f1ebf0c6a
+  oracle_address: addr1w94txclsxvl0jrjt7nypnfvyem7c56k5mhetgtr09esdkagzwujv0
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: [optional_reference_utxo]
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+
+Rate:
+  min_requirement: false  
+  general_base_symbol: PALM-ADA
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: b7c5cd554f3e83c8aa0900a0c9053284a5348244d23d0406c28eaf4d50414c4d0a
+        asset_b: lovelace
+        quote_required: false  
+        sources:
+          - minswapv2
