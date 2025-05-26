@@ -1,0 +1,30 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_agent_ada %>
+  oracle_curr: 7b38268c24fcb0f451c20291d69f13e9484c4701984612699e1a14bd
+  oracle_address: addr1w8zrt30lsdj4x2z0adsvyfrx5rxpxz9vtss6jqv63mhtk9q0063c0
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: # Optional, to be provided by Charli3 team if needed
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+Rate:
+  general_base_symbol: AGENT-ADA  
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 97bbb7db0baef89caefce61b8107ac74c7a7340166b39d906f174bec54616c6f73
+        asset_b: lovelace
+        quote_required: false
+        sources:
+          - minswapv2
+          - sundaeswapv3
+          - muesliswap
+          - vyfi
+          - wingriders
+          - wingridersv2
+          - splash
+          - spectrum

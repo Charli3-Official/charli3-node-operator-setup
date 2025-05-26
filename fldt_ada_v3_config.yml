@@ -23,6 +23,7 @@ Rate:
         sources:
           - minswapv2
           - sundaeswapv3
+          - vyfi
     
     # API source for FLDT/USD price
     api_sources:
