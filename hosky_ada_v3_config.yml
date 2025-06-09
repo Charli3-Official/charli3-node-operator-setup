@@ -13,7 +13,7 @@ Node:
 
 Rate:
   general_base_symbol: HOSKY-ADA
-  
+  precision_multiplier: 1000000000000
   base_currency:
     # DEX sources for HOSKY/ADA direct price using Charli3 Dendrite
     dexes:

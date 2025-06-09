@@ -253,7 +253,7 @@ services:
           memory: 256M
 
   charli3-hosky-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.3.0
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.4.0
     volumes:
       - "./hosky_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
