@@ -1,0 +1,29 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_usda_ada %>
+  oracle_curr: 7bc79b971ba3285200c5fac4f193ee0b8b359407b4d22a8781229182
+  oracle_address: addr1wxa40jhetype2leyuuu0rurnc77v4s89td3nfpcwdd2xx4qrgnatm
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+Rate:
+  general_base_symbol: USDA-ADA
+  general_quote_symbol: ""
+  precision_multiplier: 1000000 
+  min_requirement: false 
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: fe7c786ab321f41c654ef6c1af7b3250a613c24e4213e0425a7ae45655534441
+        asset_b: lovelace
+        quote_required: false
+        quote_calc_method: multiply
+        sources:
+          - minswapv2
+          - vyfi
+          - wingridersv2
