@@ -1,0 +1,29 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_strike_ada %>
+  oracle_curr: b1cfc7f88e7111d8aeec325d7261099c1b699d768421ef3a781671a4
+  oracle_address: addr1w85jjc6ec47e9j78d08mesrl5ycpvn7j8q4mt0yhyzqym0gcd45lk
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+Rate:
+  general_base_symbol: STRIKE-ADA
+  general_quote_symbol: ""
+  precision_multiplier: 1000000 
+  min_requirement: false 
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: f13ac4d66b3ee19a6aa0f2a22298737bd907cc95121662fc971b5275535452494b45
+        asset_b: lovelace
+        quote_required: false
+        quote_calc_method: multiply
+        sources:
+          - minswapv2
+          - vyfi
+          - splash

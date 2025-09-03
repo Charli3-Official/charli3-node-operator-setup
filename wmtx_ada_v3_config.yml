@@ -1,0 +1,91 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_wmtx_ada %>
+  oracle_curr: a70c975d6a3f4bdc98e85e2291f6ca772ff83cbffbd911679db2ee8e
+  oracle_address: addr1w95qsynrckn4ujmx9pkdhkajv8kudhwud9vk2kzlsgnu7tskavhs2
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: 11b8e9293d6fd63e4da589f7db03e20e7295db0472b047d8367959965b8ca204#0
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+Rate:
+  general_base_symbol: WMTX-ADA
+  general_quote_symbol: ADA-USD
+  precision_multiplier: 1000000 
+  min_requirement: false 
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: e5a42a1a1d3d1da71b0449663c32798725888d2eb0843c4dabeca05a576f726c644d6f62696c65546f6b656e58
+        asset_b: lovelace
+        quote_required: false
+        quote_calc_method: multiply
+        sources:
+          - wingridersv2
+          - minswapv2
+          - sundaeswapv3
+          - vyfi
+    cexes:
+      - adapter: ccxt
+        asset_a: "WMTX"
+        asset_b: "USDT"
+        quote_required: true
+        quote_calc_method: divide
+        sources:
+          - kucoin       # KuCoin
+          - bitmart      # BitMart
+          - bingx        # BingX
+          - mexc         # MEXC
+          - htx          # Huobi
+
+  quote_currency:
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDT
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=ada_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/ada_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=ADA_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+    cexes:
+      - adapter: ccxt
+        asset_a: "ADA"
+        asset_b: "USDT" 
+        quote_required: false
+        quote_calc_method: multiply
+        sources:
+          - binanceus
+          - bingx
+          - bitget
+          - bitmart
+          - digifinex
+          - coinbase
+          - coinbaseexchange
+          - kucoin
+          - lbank
+          - mexc
+          - myokx
+          - okx
+          - okxus
+          - phemex
+          - poloniex
+          - upbit
