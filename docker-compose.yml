@@ -292,7 +292,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: 256M
+          memory: 512M
 
   charli3-strike-ada-v3:
     image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
@@ -335,28 +335,6 @@ services:
         limits:
           cpus: '0.5'
           memory: 256M
-
-
-  # charli3-iag-usd-v3:
-  #   image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.4.0
-  #   volumes:
-  #     - "./iag_usd_v3_config.yml:/app/config.yml"
-  #     - "./dynamic_config.yml:/app/dynamic_config.yml"
-  #   restart: always
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       compress: "true"
-  #       max-file: "10"
-  #       max-size: "50m"
-  #   depends_on:
-  #     charli3-migrations:
-  #       condition: service_completed_successfully
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: '0.5'
-  #         memory: 256M
 
 
 volumes:

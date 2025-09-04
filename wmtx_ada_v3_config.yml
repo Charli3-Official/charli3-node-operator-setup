@@ -66,26 +66,46 @@ Rate:
             api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
             json_path: ["tick", "data", 0, "price"]
             headers: {}
-    cexes:
-      - adapter: ccxt
-        asset_a: "ADA"
-        asset_b: "USDT" 
-        quote_required: false
-        quote_calc_method: multiply
+                       
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
         sources:
-          - binanceus
-          - bingx
-          - bitget
-          - bitmart
-          - digifinex
-          - coinbase
-          - coinbaseexchange
-          - kucoin
-          - lbank
-          - mexc
-          - myokx
-          - okx
-          - okxus
-          - phemex
-          - poloniex
-          - upbit
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=ADA-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tADAUSD"
+            json_path: [6]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDC
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
