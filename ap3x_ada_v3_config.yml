@@ -1,0 +1,119 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_ap3x_ada %>
+  oracle_curr: 01708a3f7ddb8bb82e90a293ab0fa9c0cfe4207e64c025c4e0f4d451
+  oracle_address: addr1w90j56n7mcnfh70udhvk03xkdh5h3pw99v7nvhuye09n80clzsnmq
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: # Optional, to be provided by Charli3 team if needed
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+Rate:
+  general_base_symbol: AP3X-ADA
+  
+  base_currency:
+    # DEX sources for AP3X/ADA direct price using Charli3 Dendrite
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 5aa591a3a324aef2e168a3819f619488fdd19451b4040fcfe2633eb86341503358
+        asset_b: lovelace
+        quote_required: false
+        sources:
+          - minswapv2
+          - vyfi
+
+    # API sources for AP3X price from CEXs
+    api_sources:
+      - adapter: generic-api
+        asset_a: AP3X
+        asset_b: ADA
+        quote_required: true
+        quote_calc_method: divide # Divide AP3X/USD by ADA/USD to get AP3X/ADA
+        sources:
+          - name: mexc
+            api_url: "https://api.mexc.com/api/v3/ticker/price?symbol=AP3XUSDT"
+            json_path: ["price"]
+            headers: {}
+
+          - name: lbank
+            api_url: "https://api.lbkex.com/v2/ticker.do?symbol=ap3x_usdt"
+            json_path: ["data", 0, "ticker", "latest"]
+            headers: {}
+
+          - name: bitmart
+            api_url: "https://api-cloud.bitmart.com/spot/quotation/v3/ticker?symbol=AP3X_USDT"
+            json_path: ["data", "last"]
+            headers: {}
+
+  # Quote currency for converting AP3X/USD to AP3X/ADA
+  quote_currency:
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDT
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=ada_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/ada_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=ADA_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+                       
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        sources:
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=ADA-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tADAUSD"
+            json_path: [6]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDC
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
