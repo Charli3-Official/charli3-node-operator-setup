@@ -1,0 +1,148 @@
+include: dynamic_config.yml   
+
+Node:
+  mnemonic: <%= @mnemonic_usdc_ada %>
+  oracle_curr: 8d0f90ede4ae40739705be48e08bf73c82a147b0e5fc1cc4b2e77363 
+  oracle_address: addr1w8kwkd66kr0jnk26jl0rkw0dlkrd0k9gyxld4hqrm3uek8qxsawdq
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  # reference_script_input: # Optional, to be provided by Charli3 team if needed
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+
+Rate:
+  general_base_symbol: USDC-ADA
+  
+  base_currency:
+    # Direct ADA/USDC prices (inverted to get USDC/ADA)
+    api_sources:
+      - adapter: generic-api
+        asset_a: USDC
+        asset_b: ADA
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+            inverse: true
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+            inverse: true
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
+            inverse: true
+
+      - adapter: generic-api
+        asset_a: USDC
+        asset_b: ADA
+        quote_required: true
+        quote_calc_method: divide # Divide USDC/USD by ADA/USD to get USDC/ADA
+        sources:
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=USDCUSD"
+            json_path: ["result", "USDCUSD", "o"]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: USDC
+        asset_b: USDT
+        quote_required: true
+        quote_calc_method: divide # Divide USDC/USDT by ADA/USDT to get USDC/ADA
+        sources:
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=USDC-USDT"
+            json_path: ["data", 0, "last"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=USDC_USDT"
+            json_path: [0, "last"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=USDC-USDT"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: mexc
+            api_url: "https://api.mexc.com/api/v3/ticker/price?symbol=USDCUSDT"
+            json_path: ["price"]
+            headers: {}
+
+  # Quote currency for converting USDC/USD to USDC/ADA
+  quote_currency:
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDT
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=ada_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/ada_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=ADA_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+                       
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        sources:
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "o"]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=ADA-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tADAUSD"
+            json_path: [6]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDC
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/spot/v1/market/ticker?symbol=ADAUSDC_SPBL"
+            json_path: ["data", "close"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
