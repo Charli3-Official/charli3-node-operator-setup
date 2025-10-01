@@ -53,7 +53,7 @@ services:
       retries: 5
 
   charli3-migrations:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./dynamic_config.yml:/app/config.yml"
     command: ["python3", "migrations.py"]
@@ -64,7 +64,7 @@ services:
         condition: service_healthy
 
   charli3-ada-charli3-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./ada_charli3_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -85,7 +85,7 @@ services:
           memory: 256M
 
   charli3-ada-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./ada_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -106,7 +106,7 @@ services:
           memory: 256M
 
   charli3-fldt-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./fldt_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -127,7 +127,7 @@ services:
           memory: 256M
 
   charli3-mehen-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./usdm_reserves_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -148,7 +148,7 @@ services:
           memory: 256M
 
   charli3-newm-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./newm_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -169,7 +169,7 @@ services:
           memory: 256M
 
   charli3-snek-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./snek_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -190,7 +190,7 @@ services:
           memory: 256M
 
   charli3-usdm-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./usdm_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -211,7 +211,7 @@ services:
           memory: 256M
     
   charli3-palm-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./palm_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -232,7 +232,7 @@ services:
           memory: 256M
 
   charli3-agent-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./agent_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -253,7 +253,7 @@ services:
           memory: 256M
 
   charli3-hosky-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./hosky_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -274,7 +274,7 @@ services:
           memory: 256M
 
   charli3-wmtx-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./wmtx_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -295,7 +295,7 @@ services:
           memory: 512M
 
   charli3-strike-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./strike_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -316,7 +316,7 @@ services:
           memory: 256M
 
   charli3-usda-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./usda_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -337,7 +337,7 @@ services:
           memory: 256M
   
   charli3-ap3x-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./ap3x_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -358,7 +358,7 @@ services:
           memory: 256M
 
   charli3-charli3-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./charli3_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -379,7 +379,7 @@ services:
           memory: 256M
 
   charli3-usdc-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./usdc_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -400,7 +400,7 @@ services:
           memory: 256M
 
   charli3-btc-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.1
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
     volumes:
       - "./btc_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
