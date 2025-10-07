@@ -1,4 +1,4 @@
-services:  
+services:
   charli3-node-operator-db:
     image: postgres:16
     environment:
@@ -24,36 +24,48 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: 2G  
-  
+          cpus: "2"
+          memory: 2G
+
   pgbouncer:
-    image: bitnami/pgbouncer:1.23.1
+    image: edoburu/pgbouncer:v1.24.1-p1
     environment:
-      - POSTGRESQL_HOST=charli3-node-operator-db
-      - POSTGRESQL_PORT=5432
-      - POSTGRESQL_DATABASE=node-operator-backend
-      - POSTGRESQL_USERNAME=charli3
-      - POSTGRESQL_PASSWORD=charli3
-      - PGBOUNCER_PORT=6432
-      - PGBOUNCER_POOL_MODE=session
-      - PGBOUNCER_MAX_CLIENT_CONN=1000
-      - PGBOUNCER_DEFAULT_POOL_SIZE=50
-      - PGBOUNCER_QUERY_WAIT_TIMEOUT=300
-      - PGBOUNCER_DATABASE=*
+      # Connection settings
+      - DB_HOST=charli3-node-operator-db
+      - DB_PORT=5432
+      - DB_NAME=node-operator-backend
+      - DB_USER=charli3
+      - DB_PASSWORD=charli3
+
+      # CRITICAL: Match PostgreSQL 16 auth method
+      - AUTH_TYPE=scram-sha-256
+
+      # Pool settings
+      - POOL_MODE=session
+      - MAX_CLIENT_CONN=500
+      - DEFAULT_POOL_SIZE=50
+
+      # Timeout settings (in seconds)
+      - QUERY_WAIT_TIMEOUT=30
+      - SERVER_IDLE_TIMEOUT=30
+      - SERVER_LIFETIME=300
     ports:
-      - "6432:6432"
+      - "6432:5432"
     depends_on:
       - charli3-node-operator-db
     restart: always
     healthcheck:
-      test: 'env PGPASSWORD="$$POSTGRESQL_PASSWORD" psql -p 6432 -U "$$POSTGRESQL_USERNAME" pgbouncer -b -c "SHOW USERS" >/dev/null'
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -h 127.0.0.1 -p 5432 -U charli3 -d node-operator-backend",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
 
   charli3-migrations:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./dynamic_config.yml:/app/config.yml"
     command: ["python3", "migrations.py"]
@@ -64,7 +76,7 @@ services:
         condition: service_healthy
 
   charli3-ada-charli3-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./ada_charli3_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -81,11 +93,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-ada-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./ada_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -102,11 +114,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-fldt-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./fldt_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -123,11 +135,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-mehen-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./usdm_reserves_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -144,11 +156,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-newm-usd-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./newm_usd_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -165,11 +177,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-snek-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./snek_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -186,11 +198,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-usdm-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./usdm_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -207,11 +219,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
-    
+
   charli3-palm-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./palm_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -228,11 +240,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-agent-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./agent_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -249,11 +261,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-hosky-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./hosky_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -270,11 +282,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-wmtx-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./wmtx_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -291,11 +303,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
 
   charli3-strike-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./strike_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -312,11 +324,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-usda-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./usda_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -333,11 +345,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
-  
+
   charli3-ap3x-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./ap3x_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -354,11 +366,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-charli3-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./charli3_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -375,11 +387,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-usdc-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./usdc_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -396,11 +408,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
 
   charli3-btc-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.3
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
     volumes:
       - "./btc_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
@@ -417,9 +429,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
-
 
 volumes:
   charli3-node-operator-db:
