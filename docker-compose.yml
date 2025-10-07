@@ -41,7 +41,7 @@ services:
       - AUTH_TYPE=scram-sha-256
 
       # Pool settings
-      - POOL_MODE=transaction
+      - POOL_MODE=session
       - MAX_CLIENT_CONN=500
       - DEFAULT_POOL_SIZE=50
 
