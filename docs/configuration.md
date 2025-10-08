@@ -142,11 +142,11 @@ ChainQuery:
 
 Replace the IP addresses with those of your Cardano Infrastructure Server.
 
-#### 4.4.1 External Configuration for Testnet
+#### 4.4.1 External Configuration (Required for Mainnet and Testnet)
 
-When running a node in a testnet environment, you may need to fetch certain data, particularly DEX prices, from the mainnet Cardano blockchain. This is because the testnet often lacks the necessary liquidity or trading activity to provide accurate price information for all asset pairs.
+Regardless of the network your feed targets, the backend requires access to mainnet data sources for price resolution. Provide either Ogmios+Kupo or Blockfrost under the `external` key. We **strongly recommend Ogmios+Kupo** (self-hosted) for resilience and low latency. Blockfrost can be used as a fallback when running your own infrastructure is not feasible.
 
-To enable this functionality, add an `external` section under `ChainQuery`:
+Example configuration:
 
 ```yaml
 ChainQuery:
@@ -158,11 +158,12 @@ ChainQuery:
     ogmios:
       ws_url: ws://mainnet-ogmios-url:1337
       kupo_url: http://mainnet-kupo-url:1442
+    # If you cannot run Ogmios/Kupo, uncomment Blockfrost instead.
     blockfrost:
       project_id: "your-mainnet-blockfrost-project-id"
 ```
 
-This configuration allows your testnet node to connect to mainnet services to fetch accurate DEX prices. You can configure either Ogmios+Kupo or Blockfrost for this purpose. If both are configured, the node will prioritize using Ogmios+Kupo.
+Only configure one of Ogmios/Kupo or Blockfrost. When both are present, the node prioritizes Ogmios/Kupo.
 
 - **Ogmios+Kupo**: Provides a more decentralized approach but requires running your own mainnet Cardano node.
 - **Blockfrost**: A convenient option that doesn't require running your own mainnet node, but introduces a dependency on a third-party service.
@@ -211,7 +212,7 @@ RewardCollection:
 
 For more information on reward collection, see the [Reward Collection Guide](reward-collection.md).
 
-### 4.7 Mnemonic Section
+### 4.7 Wallet Credentials (Mnemonics or Keys)
 
 ```yaml
 mnemonic_ada_charli3: 
@@ -221,7 +222,39 @@ mnemonic_ada_usd:
 # ... (other mnemonic entries)
 ```
 
-Each line corresponds to a different oracle feed. Fill in the 24-word mnemonic for each feed you are approved to operate. Leave blank any feeds you're not operating.
+Each line corresponds to a different oracle feed. Supply the 24-word mnemonic for any feed you operate. Leave entries empty for feeds you do not run or when you prefer to use signing/verification keys.
+
+If you use Cardano `.skey`/`.vkey` files instead of mnemonics:
+
+1. Create a `keys/` directory at the root of this repository and, for clarity, one sub-folder per feed (e.g., `keys/ada_charli3/`, `keys/ada_usd/`).
+2. Copy the corresponding `node.skey` and `node.vkey` files into the matching folder.
+3. Edit the feed-specific config (e.g., `ada_charli3_v3_config.yml`) so the `Node` section looks like:
+
+   ```yaml
+   Node:
+     mnemonic:
+     signing_key: /app/keys/ada_charli3/node.skey
+     verification_key: /app/keys/ada_charli3/node.vkey
+     # ...other settings
+   ```
+
+4. Ensure the `docker-compose.yml` keeps the new `./keys:/app/keys:ro` volume mount (already provided in this repository).
+
+With this setup the backend detects the empty mnemonic, loads the `.skey`/`.vkey` pair, and continues to operate without any other changes. Mixing approaches is fine—some feeds can use mnemonics while others pull keys from disk.
+
+**Example folder layout for multiple feeds**
+
+```
+keys/
+  ada_charli3/
+    node.skey
+    node.vkey
+  ada_usd/
+    node.skey
+    node.vkey
+```
+
+Each feed’s config should reference the matching directory (e.g., `/app/keys/ada_usd/node.skey`).
 
 ## 5. Security Considerations
 

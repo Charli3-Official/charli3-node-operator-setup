@@ -84,6 +84,11 @@ Charli3 nodes use two types of configuration files:
 - `config.yml`: Feed-specific configuration files
 - `dynamic_config.yml`: Shared configuration file for parameters common across all feeds
 
+When operating with Cardano signing/verification keys instead of mnemonics:
+- Place your key files under a new `keys/` directory (e.g., `keys/ada_charli3/node.skey`).
+- Leave the corresponding mnemonic blank in `dynamic_config.yml`.
+- Point each feed's `Node` section to `/app/keys/<feed>/node.skey` and `/app/keys/<feed>/node.vkey`.
+
 For more information on configuring your node, see the [Configuration Guide](docs/configuration.md).
 
 ## Available Oracle Feeds
