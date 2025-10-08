@@ -8,6 +8,9 @@ database:
 
 Node:
   mnemonic: xxx xxx xxx
+  # Optional key-file setup (leave mnemonic empty/null when using these):
+  # signing_key: /app/keys/node.skey
+  # verification_key: /app/keys/node.vkey
   oracle_curr: c00c2ee78495d1cc21010b354c56975ca3f0202e2ea9e16ebab0acfa
   node_nft: NodeFeed
   aggstate_nft: AggState

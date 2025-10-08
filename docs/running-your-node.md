@@ -6,6 +6,8 @@ This guide provides instructions on how to run and manage your Charli3 node oper
 
 Once you've completed the [installation](installation-guide.md) and [configuration](configuration.md) steps, you can start your node using Docker Compose:
 
+- If you configured feeds to use `.skey`/`.vkey` files, copy them into the `keys/` directory (and any sub-folders) before starting the stack.
+
 ```bash
 docker-compose up -d
 ```
