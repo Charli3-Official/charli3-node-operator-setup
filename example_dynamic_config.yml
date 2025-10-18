@@ -14,6 +14,13 @@ ChainQuery:
   ogmios:
     ws_url: ws://10.128.0.3:1337
     kupo_url: http://10.128.0.3:1442
+  external:
+    ogmios:
+      ws_url: ws://mainnet-ogmios-host:1337
+      kupo_url: http://mainnet-kupo-host:1442
+    # You may use Blockfrost instead of Ogmios, but we strongly recommend self-hosted Ogmios/Kupo.
+    # blockfrost:
+    #   project_id: your-mainnet-blockfrost-project-id
 
 Alerts:
   cooldown: 1800 # 30 minutes (Optional)
@@ -38,6 +45,7 @@ RewardCollection:
   destination_address: "addr1q9evg963x3rwxu8fk9qv7e7t9v509xh94nphuhtzngflq3hc54jdzk6qyr8dru552quaxkwar5rzngryqxt33j7ul3xs6rxa04" # Address to collect rewards
   trigger_amount: 1000 # 1000 C3 tokens
 
+# Populate the mnemonics for each feed OR leave blank when using signing/verification keys.
 mnemonic_ada_charli3:
 mnemonic_ada_euro:
 mnemonic_ada_chf:

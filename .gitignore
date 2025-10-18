@@ -4,3 +4,4 @@ config*.yml
 dynamic_config*.yml
 usdm_reserves_v3_config.yml
 preprod/usdm_reserves_v3_config.yml
+keys/
