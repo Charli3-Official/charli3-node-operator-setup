@@ -22,8 +22,8 @@ Rate:
         quote_required: false
         sources:
           - minswapv2
-          - sundaeswapv3
           - vyfi
+          - minswap
     
     # API source for FLDT/USD price
     api_sources:
@@ -34,8 +34,8 @@ Rate:
         quote_calc_method: divide # We'll divide by ADA/USD to get FLDT/ADA
         sources:
           - name: mexc
-            api_url: "https://www.mexc.com/open/api/v2/market/ticker?symbol=FLDT_USDT"
-            json_path: ["data", 0, "last"]
+            api_url: "https://api.mexc.com/api/v3/ticker/price?symbol=FLDTUSDT"
+            json_path: ["price"]
             headers: {}
   
   quote_currency:

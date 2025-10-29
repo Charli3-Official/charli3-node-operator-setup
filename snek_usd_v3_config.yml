@@ -40,8 +40,8 @@ Rate:
             headers: {}
 
           - name: mexc
-            api_url: "https://www.mexc.com/open/api/v2/market/ticker?symbol=SNEK_USDT"
-            json_path: ["data", 0, "last"]
+            api_url: "https://api.mexc.com/api/v3/ticker/price?symbol=SNEKUSDT"
+            json_path: ["price"]
             headers: {}
 
           - name: bitget

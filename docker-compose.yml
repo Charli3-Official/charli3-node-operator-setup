@@ -247,7 +247,7 @@ services:
           memory: 256M
 
   charli3-palm-ada-v3:
-    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.4
+    image: ghcr.io/charli3-official/charli3-node-operator-backend:v3.5.5
     volumes:
       - "./palm_ada_v3_config.yml:/app/config.yml"
       - "./dynamic_config.yml:/app/dynamic_config.yml"
