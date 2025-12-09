@@ -1,0 +1,138 @@
+include: dynamic_config.yml
+
+Node:
+  mnemonic: <%= @mnemonic_night_ada %>
+  oracle_curr: 98fb91805ab677e06b71f26e5f1c700999c1addb75dbb7bb5d769029
+  oracle_address: addr1w8z46wa8ajgqj5zy90nrjp2hd4ssjtuuunpcuyfpplex4nclv9peu
+  c3_token_hash: 8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a
+  c3_token_name: CHARLI3
+  c3_oracle_nft_hash: e2ee3c439d71d22a77ccf019953459368b4d35e6184c115d67e1c735
+  c3_oracle_nft_name: OracleFeed
+  c3_oracle_rate_address: addr1wxhsunv3398mrx39wm843pyjd3p4npdp6wftcq9tt8jxvhqh5dja0
+
+Rate:
+  general_base_symbol: NIGHT-ADA
+
+  base_currency:
+    dexes:
+      - adapter: charli3-dendrite
+        asset_a: 0691b2fecca1ac4f53cb6dfb00b7013e561d1f34403b957cbb5af1fa4e49474854
+        asset_b: lovelace
+        quote_required: false
+        sources:
+          - sundaeswapv3
+          - minswapv2
+          - splash
+          - wingridersv2
+          - vyfi
+
+    api_sources:
+      - adapter: generic-api
+        asset_a: NIGHT
+        asset_b: USDT
+        quote_required: true
+        quote_calc_method: divide
+        sources:
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=NIGHT-USDT"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=NIGHT-USDT"
+            json_path: ["data", 0, "last"]
+            headers: {}
+
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=night_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: bybit
+            api_url: "https://api.bybit.com/v5/market/tickers?category=spot&symbol=NIGHTUSDT"
+            json_path: ["result", "list", 0, "lastPrice"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/night_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=NIGHTUSD"
+            json_path: ["result", "NIGHTUSD", "c", 0]
+            headers: {}
+
+          - name: bitrue
+            api_url: "https://openapi.bitrue.com/api/v1/ticker/price?symbol=nightusdt"
+            json_path: ["price"]
+            headers: {}
+
+  quote_currency:
+    api_sources:
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDT
+        sources:
+          - name: xt
+            api_url: "https://sapi.xt.com/v4/public/ticker?symbol=ada_usdt"
+            json_path: ["result", 0, "c"]
+            headers: {}
+
+          - name: gate
+            api_url: "https://api.gateio.ws/api2/1/ticker/ada_usdt"
+            json_path: ["last"]
+            headers: {}
+
+          - name: crypto
+            api_url: "https://api.crypto.com/v2/public/get-ticker?instrument_name=ADA_USDT"
+            json_path: ["result", "data", 0, "a"]
+            headers: {}
+
+          - name: huobi
+            api_url: "https://api.huobi.pro/market/trade?symbol=adausdt"
+            json_path: ["tick", "data", 0, "price"]
+            headers: {}
+                       
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USD
+        sources:
+          - name: coinbase
+            api_url: "https://api.exchange.coinbase.com/products/ADA-USD/ticker/"
+            json_path: ["price"]
+            headers: {}
+
+          - name: kraken
+            api_url: "https://api.kraken.com/0/public/Ticker?pair=ADAUSD"
+            json_path: ["result", "ADAUSD", "c", 0]
+            headers: {}
+
+          - name: btse
+            api_url: "https://api.btse.com/spot/api/v3.2/price?symbol=ADA-USD"
+            json_path: [0, "lastPrice"]
+            headers: {}
+
+          - name: bitfinex
+            api_url: "https://api.bitfinex.com/v2/ticker/tADAUSD"
+            json_path: [6]
+            headers: {}
+
+      - adapter: generic-api
+        asset_a: ADA
+        asset_b: USDC
+        sources:
+          - name: bitget
+            api_url: "https://api.bitget.com/api/v2/spot/market/tickers?symbol=ADAUSDC"
+            json_path: ["data", 0, "lastPr"]
+            headers: {}
+
+          - name: kucoin
+            api_url: "https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ADA-USDC"
+            json_path: ["data", "price"]
+            headers: {}
+
+          - name: okx
+            api_url: "https://www.okx.com/api/v5/market/ticker?instId=ADA-USDC"
+            json_path: ["data", 0, "last"]
+            headers: {}
